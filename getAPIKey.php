@@ -1,3 +1,4 @@
+<?php
 // API URL
 $url = 'https://opmet.decea.mil.br/adm/login';
 
@@ -25,3 +26,4 @@ $result = curl_exec($ch);
 
 // Close cURL resource
 curl_close($ch);
+?>
