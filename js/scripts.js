@@ -26,7 +26,7 @@ function getAPIKEY(login, senha) {
   error: (function (erro) {
     console.log(erro)
   }) 
-})*/
+})
   $.ajax({
         url: 'https://opmet.decea.mil.br/adm/login',
         data: {"username":"priscila_bdc","password":"789Cimaer@"},
@@ -36,8 +36,21 @@ function getAPIKEY(login, senha) {
             alert(data);
           console.log(data)
             //process the JSON data etc
-        }
-})
+        }*/
+  
+  const url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=sbsp&begindate=2017102906&enddate=2017102907&format=JSON";
+
+  const options = {
+       headers: {
+                 Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjI0OTkyMTQ4LCJleHAiOjE2MjU4NTYxNDh9.H6ZHyd-aF0d0DAG5RoddaUt8q8L2NZe3PxtTpApNZro"
+              }
+    
+  };
+
+  fetch(url, options)
+    .then( res => res.json() )
+    .then( data => console.log(data) );
+  })
   
 }
 
