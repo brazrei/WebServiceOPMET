@@ -8,11 +8,15 @@
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <title>Formatador de TAFs</title>
 <body>
-  <h1>Formatação de TAF's</h1>
-  <span>Cole os TAFs aqui:</span> </br><textarea id="edtTAF" class="inputTafs" onpaste="automatico()"></textarea>
-  </br>
-  <button onclick="formataTAF()">Formatar</button>
-  </br>
+  <h1>Acesso ao WEBSERVICE do Banco OPMET</h1>
+  <label for="Login">Login:</label>
+  <input type="text" id="login" name="login"><br><br>
+  <label for="senha">Senha:</label>
+  <input type="password" id="senha" name="senha" minlength="8"><br><br><br><br>
+  
+  <span>Chave de acesso à API WBSERVER OPMET:</span> </br><textarea id="edtAPIKEY" class="edtAPIKEY"></textarea>
+  
+  <input type="submit" onclick="loginOPMET()">
   <h4>Desenvolvido por: Reinaldo Braz.</h4>
   <h5>Email: brazrab@fab.mil.br</h5>
 </body>
