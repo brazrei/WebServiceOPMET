@@ -2,7 +2,7 @@
     let login = $("#login").val();
     let senha = $("#senha").val();
     
-    
+    getAPIKEY(login, senha) ;
   }
 
 function getAPIKEY(login, senha) {
