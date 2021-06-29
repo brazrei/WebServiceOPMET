@@ -50,7 +50,7 @@ function getAPIKEY(login, senha) {
   fetch(url, options)
     .then( res => res.json() )
     .then( data => console.log(data) );
-  })
+  
   
 }
 
