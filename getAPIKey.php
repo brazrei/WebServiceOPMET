@@ -8,7 +8,7 @@ $ch = curl_init($url);
 // Setup request to send json via POST
 $data = array(
     'username' => 'priscila_bdc',
-    'password' => '789Cimaer'
+    'password' => '789Cimaer@'
 );
 $userdata = json_encode($data);
 
@@ -26,4 +26,6 @@ $result = curl_exec($ch);
 
 // Close cURL resource
 curl_close($ch);
+
+echo "Resposta: ".$result
 ?>
