@@ -37,7 +37,8 @@ function getAPIKEY(login, senha) {
           console.log(data)
             //process the JSON data etc
         }*/
- const url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=SBCF&begindate=2021-08-01T00:00&enddate=2021-08-01T05:00";
+   const url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=SBCF&begindate=2021-08-01T00:00&enddate=2021-08-01T01:00";
+   dados = {}
 
   const options = {
     //origin: "www.redemet.aer.mil.br",
@@ -49,8 +50,8 @@ function getAPIKEY(login, senha) {
   };
 
   fetch(url, options)
-    .then( res => console.log("res: " +res) )
-    .then( data => console.log("data: "+data) );
+    .then( res => res.json())
+    .then( data => $('#edtAPIKEY').val(JSON.stringify(data) ) );
   
   
 }
