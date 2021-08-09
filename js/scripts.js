@@ -9,7 +9,7 @@ function loginOPMET() {
     getAPIKEY(addAspas (login), addAspas(senha)) ;
   }
 
-function getAPIKEY(login, senha) {
+function consultaOPMET(login, senha) {
   
  /* $.post("https://opmet.decea.mil.br/adm/login", { "username": login, "password": senha }, function( data ) {
     $( ".edtAPIKEY" ).html( data );
