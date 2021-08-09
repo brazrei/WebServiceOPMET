@@ -8,6 +8,10 @@ function loginOPMET() {
     
     getAPIKEY(addAspas (login), addAspas(senha)) ;
   }
+  
+function getAPIKEY(){
+
+}
 
 function consultaOPMET(login, senha) {
   
@@ -37,10 +41,11 @@ function consultaOPMET(login, senha) {
           console.log(data)
             //process the JSON data etc
         }*/
-   const url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=SBCF&begindate=2021-08-01T00:00&enddate=2021-08-01T01:00";
-   dados = {}
-
-  const options = {
+   const begindate = $('#dataini').val()
+   const enddate = $('#datafin').val()
+   const localidade = $('#localidade').val()
+   const url = `https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=${localidade}&begindate=${begindate}&enddate=${begindate}`;
+   const options = {
     //origin: "www.redemet.aer.mil.br",
        headers: {
                  "accept": "*/*" ,
