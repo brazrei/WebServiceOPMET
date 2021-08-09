@@ -1,38 +1,72 @@
 <html lang="pt-br">
+
 <head>
-<link rel="icon" href="png/icon.png">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="png/icon.png">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
-<link rel="stylesheet" href="css/styles.css" type='text/css'/>
+<link rel="stylesheet" href="css/styles.css" type='text/css' />
 <script src="js/scripts.js" type="text/javascript"></script>
+<script src="js/trataJSON.js" type="text/javascript"></script>
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <title>Acesso ao WEBSERVICE OPMET</title>
-<body>
-  <h1>Acesso ao WEBSERVICE do Banco OPMET</h1>
-  <label for="Login">Login:</label>
-  <input type="text" id="login" name="login" value="priscila_bdc"><br><br>
-  <label for="senha">Senha:</label>
-  <input type="password" id="senha" name="senha" minlength="8" value="789Cimaer@"><br><br>
-  <input type="submit" value="Login" onclick="loginOPMET()">
-  
-  <br><br><br>
-  
-  <label>Localidade:</label>
-  <input type="text" id="localidade" value="SBCT"><br><br>
-  <label>Data inicial:</label>
-  <input type="text" id="dataini" value="2021-08-01T00:00">
-  <label>Data final:</label>
-  <input type="text" id="datafin" value="2021-08-01T01:00">
-  
-  <br><br>
 
-  <input type="button" value="Consultar" onclick="consultaOPMET()">
-  
-  <br><br><br>
-  
-  <span>Chave de acesso à API WBSERVER OPMET:</span> </br><textarea id="edtAPIKEY" class="edtAPIKEY" style="width:95%; height:200px;"></textarea>
-  <h4>Desenvolvido por: Reinaldo Braz.</h4>
-  <h5>Email: brazrab@fab.mil.br</h5>
+<body>
+    <h1>Acesso ao WEBSERVICE do Banco OPMET</h1>
+    <label for="Login">Login:</label>
+    <input type="text" id="login" name="login" value="priscila_bdc"><br><br>
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" minlength="8" value="789Cimaer@"><br><br>
+    <input type="submit" value="Login" onclick="loginOPMET()">
+
+    <br><br><br>
+
+    <label>Localidade:</label>
+    <input type="text" id="localidade" value="SBCT"><br><br>
+    <label>Data inicial:</label>
+    <input type="text" id="dataini" value="2021-08-01T00:00">
+    <label>Data final:</label>
+    <input type="text" id="datafin" value="2021-08-01T01:00">
+
+    <br><br>
+
+    <input type="button" value="Consultar" onclick="consultaOPMET()">
+
+    <br><br><br>
+
+    <span>Chave de acesso à API WBSERVER OPMET:</span> </br><textarea id="edtAPIKEY" class="edtAPIKEY"
+        style="width:95%; height:200px;"></textarea>
+
+
+
+    <table border="1">
+        <tr class="titulo">
+            <th class="attribute">Data-Hora</th>
+            <th class="attribute">Tipo</th>
+            <th class="attribute">Visibilidade</th>
+            <th class="attribute">Temp BS</th>
+            <th class="attribute">Temp BU</th>
+            <th class="attribute">Tempo Pres.</th>
+            <th class="attribute">Teto060</th>
+            <th class="attribute">QNH</th>
+        </tr>
+        <tr class="dados">
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+            <th class="data"></th>
+        </tr>
+
+    </table>
+
+
+    <h4>Desenvolvido por: Reinaldo Braz.</h4>
+
+    <h5>Email: brazrab@fab.mil.br</h5>
 </body>
+
 </html>
