@@ -7,29 +7,54 @@ function loginOPMET() {
     let senha = $("#senha").val();
     
     getAPIKEY(addAspas (login), addAspas(senha)) ;
-}
-//"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjI1MDAwNjQyLCJleHAiOjE2MjU4NjQ2NDJ9.ZX421yQTBhFcZR1MK0CiSublkEN5MQstPzeddhGkMrU"
+  }
 
 function getAPIKEY(login, senha) {
-  const url = "https://opmet.decea.mil.br/adm/login";
+  
+ /* $.post("https://opmet.decea.mil.br/adm/login", { "username": login, "password": senha }, function( data ) {
+    $( ".edtAPIKEY" ).html( data );
+  });  
+  
+  $.ajax({
+  url: "https://opmet.decea.mil.br/adm/login",
+  type: "post",
+  data: { "username": login, "password": senha },
 
-  const data = {"username":"priscila_bdc","password":"789Cimaer@"}
+  success: function(data){ // trigger when request was successfull
+    $( ".edtAPIKEY" ).html( data );
+  },
+  error: (function (erro) {
+    console.log(erro)
+  }) 
+})
+  $.ajax({
+        url: 'https://opmet.decea.mil.br/adm/login',
+        data: {"username":"priscila_bdc","password":"789Cimaer@"},
+        beforeSend: function(xhr) {
+             xhr.setRequestHeader("Content-Type", "application/json")
+        }, success: function(data){
+            alert(data);
+          console.log(data)
+            //process the JSON data etc
+        }*/
+ const url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=SBCF&begindate=2021-08-01T00:00&enddate=2021-08-01T05:00";
+
   const options = {
-       method: 'POST',
+    //origin: "www.redemet.aer.mil.br",
        headers: {
-                 "Content-Type": "application/json"
+                 "accept": "*/*" ,
+                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjI4NTEzMzA3LCJleHAiOjE2MjkzNzczMDd9.5RoQImf4bt7AEQydz-Fov29bnKFicLso_iyMhbPiIJg"
               },
-       body: JSON.stringify(data)
+              method: "GET"
   };
+
   fetch(url, options)
-    .then( res => res.json() )
-    .then( data => console.log(data) );
+    .then( res => console.log("res: " +res) )
+    .then( data => console.log("data: "+data) );
+  
   
 }
 
-function automatico () {
-  //setTimeout(formataTAF, 1000);
-}
 /*
 curl -H 'Content-Type: application/json' -d '{"username":"priscila_bdc","password":"789Cimaer@"}' https://opmet.decea.mil.br/adm/login
 {"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjI0OTkyMTQ4LCJleHAiOjE2MjU4NTYxNDh9.H6ZHyd-aF0d0DAG5RoddaUt8q8L2NZe3PxtTpApNZro"}
