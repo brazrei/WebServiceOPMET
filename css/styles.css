@@ -1,22 +1,22 @@
 body {
-  background: #EEF2F7;
-}
-
-.inputTafs{
-  width: 99%;
-  height: 80%;
+    background: #EEF2F7;
+  }
   
-}
-
-button {
- width : 400px;
- height : 40px;
- color: white;
- background : green;
-}
-
-span {
-  font-size : 20px;
-  style : bold;
-  color : red;
-}
+  .inputTafs{
+    width: 99%;
+    height: 80%;
+    
+  }
+  
+  button {
+   width : 400px;
+   height : 40px;
+   color: white;
+   background : green;
+  }
+  
+  span {
+    font-size : 20px;
+    style : bold;
+    color : red;
+  }
