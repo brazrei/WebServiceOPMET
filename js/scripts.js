@@ -96,9 +96,9 @@ function getALT_NVU(clouds) {
 function getNVO_OCORRENDO(tempoPresente) {
   nvo = false;
   tempoPresente.presentRecentCondition.forEach(e => {
-    if (e.weatherConditionPresentRecentCode>=42 && e.weatherConditionPresentRecentCode<=49)
+    if (e.weatherConditionPresentRecentCode >= 42 && e.weatherConditionPresentRecentCode <= 49)
       nvo = true
-    
+
   });
   return nvo;
 }
@@ -106,30 +106,80 @@ function getNVO_OCORRENDO(tempoPresente) {
 function parseDecimal(n) {
   if (!n)
     n = 0;
-  try  {
+  try {
     n = parseFloat(n)
   } catch {
-    n="N invalido"
+    n = "N invalido"
   }
-  return n/10;
+  return n / 10;
 }
 
 function parseRajada(n) {
   if (!n)
     n = 0;
   try {
-    parseFloat(n/1) // se for null retorna 0
+    parseFloat(n / 1) // se for null retorna 0
   } catch {
     n = 0.0
   }
   return n
 }
 
+function getTETO_N(clouds, teto) {
+  teto = false
+  clouds.forEach(c => {
+    if (c.quantity > 4 && c.quantity < 9)
+      if (c.heightDam * 10 <= 600)
+        teto = true
+  })
+  return teto
+}
+
+function getTETO_600(clouds) {
+  teto600 = false
+  if (getTETO_N(clouds, 600))
+    teto600 = true;
+  return teto600;
+}
+
+function getTETO_800(clouds) {
+  teto800 = false
+  if (getTETO_N(clouds, 800))
+    teto800 = true;
+  return teto800;
+}
+
+function getTETO_1000(clouds) {
+  teto1000 = false
+  if (getTETO_N(clouds, 1000))
+    teto1000 = true;
+  return teto1000;
+}
+
+function getTETO_1500(clouds) {
+  teto1500 = false
+  if (getTETO_N(clouds, 1500))
+    teto1500 = true;
+  return teto1500;
+}
+
+function getTETOS(clouds) {
+  let tetos = { t600: "n", t800: "n", t1000: "n", t1500: "n" }
+  if (getTETO_600(clouds))
+    tetos.t600 = "y"
+  else if (getTETO_800(clouds))
+    tetos.t800 = "y"
+  else if (getTETO_1000(clouds))
+    tetos.t1000 = "y"
+  else if (getTETO_1500(clouds))
+    tetos.t1500 = "y"
+}
+
 function trataDados(dados) {
   $('#edtAPIKEY').val(JSON.stringify(dados));
   dados = dados.bdc[0];
   pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
-
+  let tetos = getTETOS(dados.clouds);
   let line = {
     mes: getMes(dados.observationDateHour),
     hora: getHora(dados.observationDateHour),
@@ -146,11 +196,11 @@ function trataDados(dados) {
     qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
     qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
     precip: parseDecimal(dados.precipitation.quantityMilimeters),
-    TETO_1500: "",
-    TETO_1000: "",
-    TETO_800: "",
-    TETO_600: "",
-    SKC: getSKC(dados.clouds),
+    TETO_600: tetos.t600,//tem que ser nesta ordem
+    TETO_800: tetos.t800,
+    TETO_1000: tetos.t1000,
+    TETO_1500: tetos.t1500,
+    SKC: getSKC((dados.clouds.length==0)?"y":"n"),
     NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds),
     NVU_1000: getNVU_1000(dados.clouds),
     NVU_800: getNVU_800(dados.clouds),
