@@ -57,7 +57,7 @@ function consultaOPMET(login, senha) {
 
   fetch(url, options)
     .then(res => res.json())
-    .then(data => trataDados(data);
+    .then(data => trataDados(data));
 
 
 }
