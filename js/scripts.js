@@ -104,6 +104,8 @@ function getNVO_OCORRENDO(tempoPresente) {
 }
 
 function parseDecimal(n) {
+  if (!n)
+    n = 0;
   try  {
     n = parseFloat(n)
   } catch {
@@ -113,6 +115,8 @@ function parseDecimal(n) {
 }
 
 function parseRajada(n) {
+  if (!n)
+    n = 0;
   try {
     parseFloat(n/1) // se for null retorna 0
   } catch {
