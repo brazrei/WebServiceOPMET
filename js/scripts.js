@@ -57,7 +57,7 @@ function consultaOPMET(login, senha) {
 
   fetch(url, options)
     .then(res => res.json())
-    .then(data => trataDados(JSON.stringify(data)));
+    .then(data => trataDados(data);
 
 
 }
@@ -100,7 +100,7 @@ function getNVO_OCORRENDO(tempoPresente) {
 
 
 function trataDados(dados) {
-  $('#edtAPIKEY').val(dados)
+  $('#edtAPIKEY').val(JSON.stringify(dados));
   dados = dados.bdc[0];
   pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 
