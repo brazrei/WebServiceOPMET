@@ -94,10 +94,32 @@ function getALT_NVU(clouds) {
 }
 
 function getNVO_OCORRENDO(tempoPresente) {
-  return
+  nvo = false;
+  tempoPresente.presentRecentCondition.forEach(e => {
+    if (e.weatherConditionPresentRecentCode>=42 && e.weatherConditionPresentRecentCode<=49)
+      nvo = true
+    
+  });
+  return nvo;
 }
 
+function parseDecimal(n) {
+  try  {
+    n = parseFloat(n)
+  } catch {
+    n="N invalido"
+  }
+  return n/10;
+}
 
+function parseRajada(n) {
+  try {
+    parseFloat(n) // se for null retorna 0
+  } catch {
+    n = 0.0
+  }
+  return n
+}
 
 function trataDados(dados) {
   $('#edtAPIKEY').val(JSON.stringify(dados));
@@ -107,19 +129,19 @@ function trataDados(dados) {
   let line = {
     mes: getMes(dados.observationDateHour),
     hora: getHora(dados.observationDateHour),
-    bseco: dados.temperatures[pista].dryBulbDegreeCelsius,
+    bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
     bseco_VAR_1H: 0,
     bseco_VAR_3H: 0,
-    bumido: dados.temperatures[pista].wetBulbDegreeCelsius,
-    po: dados.temperatures[pista].dewPointDegreeCelcius,
-    ur: dados.temperatures[pista].relativeHumidityPercent,
-    velvento: dados.winds[pista].speedKt,
-    dirvento: dados.winds[pista].directionDeg,
-    rajada: dados.winds[pista].gustKt,
-    qnh: dados.atmosphericPressure.qnhValueHpa,
-    qfe: dados.atmosphericPressure.qfeValueHpa,
-    qff: dados.atmosphericPressure.qffValueHpa,
-    precip: dados.precipitation.quantityMilimeters,
+    bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
+    po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
+    ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
+    velvento: parseFloat(dados.winds[pista].speedKt),
+    dirvento: parseFloat(dados.winds[pista].directionDeg),
+    rajada: parseRajada(dados.winds[pista].gustKt),
+    qnh: parseDecimal(dados.atmosphericPressure.qnhValueHpa),
+    qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
+    qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
+    precip: parseDecimal(dados.precipitation.quantityMilimeters),
     TETO_1500: "",
     TETO_1000: "",
     TETO_800: "",
@@ -143,4 +165,3 @@ function trataDados(dados) {
 curl -H 'Content-Type: application/json' -d '{"username":"priscila_bdc","password":"789Cimaer@"}' https://opmet.decea.mil.br/adm/login
 {"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjI0OTkyMTQ4LCJleHAiOjE2MjU4NTYxNDh9.H6ZHyd-aF0d0DAG5RoddaUt8q8L2NZe3PxtTpApNZro"}
 */
-
