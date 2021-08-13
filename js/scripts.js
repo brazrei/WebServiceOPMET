@@ -114,7 +114,7 @@ function parseDecimal(n) {
 
 function parseRajada(n) {
   try {
-    parseFloat(n) // se for null retorna 0
+    parseFloat(n/1) // se for null retorna 0
   } catch {
     n = 0.0
   }
