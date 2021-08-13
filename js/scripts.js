@@ -69,32 +69,47 @@ function getHora(dataHoraObs) {
   return
 }
 
-function getSKC(clouds) {
+/*function getSKC(clouds) {
   return
+}*/
+
+function getNVU_N(clouds, alt) {
+  nvu = false
+  clouds.forEach(c => {
+    if (c.heightDam * 10 <= alt)
+      nvu = true
+  })
+  return nvu
 }
 
 function getNVU_1000(clouds) {
-  return
+  return getNVU_N(clouds,1000)?"y":"n";
 }
 
 function getNVU_800(clouds) {
-  return
+  return getNVU_N(clouds,800)?"y":"n";
 }
 
 function getNVU_600(clouds) {
-  return
+  return getNVU_N(clouds,600)?"y":"n";
 }
 
 function getNVU_SEM_TETO(clouds, t) {
   r = "n"
-  if(t.t600=="n" && t.t800=="n" && t.t1000=="n" && t.t1500=="n" )
-    if (clouds.length==0)
+  if (t.t600 == "n" && t.t800 == "n" && t.t1000 == "n" && t.t1500 == "n")
+    if (clouds.length == 0)
       r = "y"
   return r
 }
 
 function getALT_NVU(clouds) {
-  return
+  maisBaixa = 1500
+  clouds.forEach(c => {
+      if (c.heightDam * 10 <= maisBaixa)
+        maisBaixa = c.heightDam * 10
+  })
+
+  return maisBaixa
 }
 
 function getNVO_OCORRENDO(tempoPresente) {
@@ -206,7 +221,7 @@ function trataDados(dados) {
     TETO_800: tetos.t800,
     TETO_1000: tetos.t1000,
     TETO_1500: tetos.t1500,
-    SKC: getSKC((dados.clouds.length==0)?"y":"n"),
+    SKC: (dados.clouds.length == 0) ? "y" : "n",
     NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos),
     NVU_1000: getNVU_1000(dados.clouds),
     NVU_800: getNVU_800(dados.clouds),
