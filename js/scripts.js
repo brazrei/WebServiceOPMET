@@ -85,8 +85,12 @@ function getNVU_600(clouds) {
   return
 }
 
-function getNVU_SEM_TETO(clouds) {
-  return
+function getNVU_SEM_TETO(clouds, t) {
+  r = "n"
+  if(t.t600=="n" && t.t800=="n" && t.t1000=="n" && t.t1500=="n" )
+    if (clouds.length==0)
+      r = "y"
+  return r
 }
 
 function getALT_NVU(clouds) {
@@ -173,9 +177,8 @@ function getTETOS(clouds) {
     tetos.t1000 = "y"
   else if (getTETO_1500(clouds))
     tetos.t1500 = "y"
-  
-    return tetos
 
+  return tetos
 }
 
 function trataDados(dados) {
@@ -204,7 +207,7 @@ function trataDados(dados) {
     TETO_1000: tetos.t1000,
     TETO_1500: tetos.t1500,
     SKC: getSKC((dados.clouds.length==0)?"y":"n"),
-    NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds),
+    NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos),
     NVU_1000: getNVU_1000(dados.clouds),
     NVU_800: getNVU_800(dados.clouds),
     NVU_600: getNVU_600(dados.clouds),
