@@ -173,6 +173,9 @@ function getTETOS(clouds) {
     tetos.t1000 = "y"
   else if (getTETO_1500(clouds))
     tetos.t1500 = "y"
+  
+    return tetos
+
 }
 
 function trataDados(dados) {
