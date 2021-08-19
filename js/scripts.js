@@ -26,7 +26,7 @@ function addZeros(n){
 function getDataIni() {
   let data = new Date()
   let ano = data.getUTCFullYear();
-  let mes = addZeros(data.getUTCMonth());
+  let mes = addZeros(parseInt(data.getUTCMonth()) + 1);
   let dia = addZeros(data.getUTCDate());
   let hora = addZeros(data.getUTCHours());
   let minutos = addZeros(data.getUTCMinutes());
