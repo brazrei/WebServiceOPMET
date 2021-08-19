@@ -22,7 +22,7 @@ function fakeData() {
 
         "station": "82022",
 
-        "observationDateHour": "2021-08-09T16:00",
+        "observationDateHour": "2021-08-09T01:00",
 
         "location": "SBBV",
 
