@@ -310,7 +310,7 @@ function getVarNH(dados, h) {
   datanH = getFormatedDate(datanH, false);
   if (mensagens && mensagens[datanH]) {
     console.log(mensagens[datanH]);
-    let dadosnH = mensagem[datanH];
+    let dadosnH = mensagens[datanH];
     return parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius) - dadosnH.bseco;
   }
   return "erro"
