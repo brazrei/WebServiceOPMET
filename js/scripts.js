@@ -328,49 +328,50 @@ function getVar3H(dados) {
   return getVarNH(dados, 3);
 }
 
-function trataDados(dados) {
-  $('#edtAPIKEY').val(JSON.stringify(dados));
-  
-  try {
-     dados = dados.bdc[0];
-  } catch {
-      dados = fakeData().bdc[0];
-  }
-  
-  let tetos = getTETOS(dados.clouds);
-  let line = {
-    mes: getMes(dados.observationDateHour),
-    hora: getHora(dados.observationDateHour),
-    bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
-    bseco_VAR_1H: getVar1H(dados),
-    bseco_VAR_3H: getVar3H(dados),
-    bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
-    po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
-    ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
-    velvento: parseFloat(dados.winds[pista].speedKt),
-    dirvento: parseFloat(dados.winds[pista].directionDeg),
-    rajada: parseRajada(dados.winds[pista].gustKt),
-    qnh: parseDecimal(dados.atmosphericPressure.qnhValueHpa),
-    qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
-    qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
-    precip: parseDecimal(dados.precipitation.quantityMilimeters),
-    TETO_600: tetos.t600,//tem que ser nesta ordem
-    TETO_800: tetos.t800,
-    TETO_1000: tetos.t1000,
-    TETO_1500: tetos.t1500,
-    SKC: (dados.clouds.length == 0) ? "y" : "n",
-    NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos),
-    NVU_1000: getNVU_1000(dados.clouds),
-    NVU_800: getNVU_800(dados.clouds),
-    NVU_600: getNVU_600(dados.clouds),
-    ALT_NVU: getALT_NVU(dados.clouds),
-    NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions)
-  };
+function trataDados(dt) {
+  $('#edtAPIKEY').val(JSON.stringify(dt));
 
-  /*if (mensagens.indexOf(dados.id) < 0)
-    mensagens.push(line);
-  else*/
-  mensagens[dados.observationDateHour] = line;
+  /*try {
+    dados = dados.bdc[0];
+  } catch {
+    dados = fakeData().bdc[0];
+  }*/
+  dt.bdc.forEach((dados) => {
+    let tetos = getTETOS(dados.clouds);
+    let line = {
+      mes: getMes(dados.observationDateHour),
+      hora: getHora(dados.observationDateHour),
+      bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
+      bseco_VAR_1H: getVar1H(dados),
+      bseco_VAR_3H: getVar3H(dados),
+      bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
+      po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
+      ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
+      velvento: parseFloat(dados.winds[pista].speedKt),
+      dirvento: parseFloat(dados.winds[pista].directionDeg),
+      rajada: parseRajada(dados.winds[pista].gustKt),
+      qnh: parseDecimal(dados.atmosphericPressure.qnhValueHpa),
+      qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
+      qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
+      precip: parseDecimal(dados.precipitation.quantityMilimeters),
+      TETO_600: tetos.t600,//tem que ser nesta ordem
+      TETO_800: tetos.t800,
+      TETO_1000: tetos.t1000,
+      TETO_1500: tetos.t1500,
+      SKC: (dados.clouds.length == 0) ? "y" : "n",
+      NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos),
+      NVU_1000: getNVU_1000(dados.clouds),
+      NVU_800: getNVU_800(dados.clouds),
+      NVU_600: getNVU_600(dados.clouds),
+      ALT_NVU: getALT_NVU(dados.clouds),
+      NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions)
+    };
+
+    /*if (mensagens.indexOf(dados.id) < 0)
+      mensagens.push(line);
+    else*/
+    mensagens[dados.observationDateHour] = line;
+  }
 
 }
   /*
