@@ -371,7 +371,7 @@ function trataDados(dt) {
       mensagens.push(line);
     else*/
     mensagens[dados.observationDateHour] = line;
-  }
+  });
 
 }
   /*
