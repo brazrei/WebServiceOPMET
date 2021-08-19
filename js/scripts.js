@@ -253,9 +253,9 @@ function trataDados(dados) {
     NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions)
   };
 
-  if (mensagens.indexOf(dados.id) < 0)
+  /*if (mensagens.indexOf(dados.id) < 0)
     mensagens.push(line);
-  else
+  else*/
     mensagens[dados.id] = line;
 
 }
