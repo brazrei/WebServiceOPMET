@@ -256,7 +256,7 @@ function trataDados(dados) {
   /*if (mensagens.indexOf(dados.id) < 0)
     mensagens.push(line);
   else*/
-    mensagens[dados.id] = line;
+    mensagens[dados.observationDateHour] = line;
 
 }
   /*
