@@ -12,6 +12,7 @@ $(document).ready(() => {
 });
 
 function addAspas(s) {
+  return s
   return '"' + s + '"'
 }
 
@@ -33,7 +34,7 @@ function getAPIKEY(login, senha) {
         password : senha
         
     },
-    method: "GET"
+    method: "POST"
   };
   let url =  "https://opmet.decea.mil.br/adm/login"
 
