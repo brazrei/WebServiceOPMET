@@ -301,7 +301,7 @@ function getVar1H(dataHoraObs) {
   let data = decHour(dataHoraObs, 1);
   data = getFormatedDate(data)
   if (mensagens && mensagens[data]) {
-
+    console.log(ensagens[data]);
   }
 
 }
