@@ -312,7 +312,7 @@ function trataDados(dados) {
   try {
      dados = dados.bdc[0];
   } catch {
-      dados = fakeData();
+      dados = fakeData().bdc[0];
   }
   
   pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
