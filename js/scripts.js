@@ -22,8 +22,23 @@ function loginOPMET() {
   getAPIKEY(addAspas(login), addAspas(senha));
 }
 
-function getAPIKEY() {
+function getAPIKEY(login, senha) {
+  const options = {
+    //origin: "www.redemet.aer.mil.br",
+    headers: {
+      "accept": "*/*"
+    },
+    data: { 
+        username : login,
+        password : senha
+        
+    },
+    method: "GET"
+  };
 
+  fetch(url, options)
+    .then(res => res.json())
+    .then(data => $('#edtAPIKEY').val(data));
 }
 
 function addZeros(n){
