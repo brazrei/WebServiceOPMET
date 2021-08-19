@@ -84,7 +84,7 @@ function getAPIKEY(login, senha) {
     },
     method: "POST"
   };
-  let url = "https://opmet.decea.intraer/adm/login"
+  let url = "https://opmet.decea.mil.br/adm/login"
 
   fetch(url, options)
     .then(res => {
