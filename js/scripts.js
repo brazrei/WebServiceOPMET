@@ -1,5 +1,12 @@
 mensagens = [];
+
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
 $(document).ready(() => {
+  
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
 });
@@ -219,6 +226,20 @@ function getTETOS(clouds) {
   return tetos
 }
 
+function decHour(dh, n) {
+  let d = new Date(dh);
+  return d.addHour(-n);
+}
+
+function getVar1H(dataHoraObs){
+  let data = decHour(dataHoraObs,1);
+  data = getFormatedDate(data)
+  if (mensagens && mensagens[data]) {
+    
+  }
+  
+}
+
 function trataDados(dados) {
   $('#edtAPIKEY').val(JSON.stringify(dados));
   dados = dados.bdc[0];
@@ -228,8 +249,8 @@ function trataDados(dados) {
     mes: getMes(dados.observationDateHour),
     hora: getHora(dados.observationDateHour),
     bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
-    bseco_VAR_1H: 0,
-    bseco_VAR_3H: 0,
+    bseco_VAR_1H: getVar1H(observationDateHour),
+    bseco_VAR_3H: getVar3H(observationDateHour),
     bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
     po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
     ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
