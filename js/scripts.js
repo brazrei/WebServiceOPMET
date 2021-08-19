@@ -1,4 +1,9 @@
 mensagens = [];
+$.(document).ready(() => {
+  $('#dataini').val(getDataIni())
+  $('#datafin').val(getDataFin())
+});
+
 function addAspas(s) {
   return '"' + s + '"'
 }
@@ -12,6 +17,24 @@ function loginOPMET() {
 
 function getAPIKEY() {
 
+}
+
+function addZeros(n){
+  return n<10?"0"+n:n;
+}
+
+function getDataIni() {
+  let data = new Date()
+  let ano = data.getUTCFullYear();
+  let mes = addZeros(data.getUTCMonth());
+  let dia = addZeros(data.getUTCDate());
+  let hora = addZeros(data.getUTCHours());
+  let minutos = addZeros(data.getUTCMinutes());
+  return `${ano}-${mes}-${dia}T${hora}:00`;
+}
+
+function getDataFin() {
+  return getDataIni();  
 }
 
 function consultaOPMET(login, senha) {
