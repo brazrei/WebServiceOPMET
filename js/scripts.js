@@ -237,7 +237,7 @@ function parseDecimal(n) {
   } catch {
     n = "N invalido"
   }
-  return Math.round((num + Number.EPSILON) * 10) / 10;
+  return Math.round((n + Number.EPSILON) * 10) / 10;
 }
 
 function parseRajada(n) {
@@ -364,8 +364,10 @@ function trataDados(dt) {
       NVU_800: getNVU_800(dados.clouds),
       NVU_600: getNVU_600(dados.clouds),
       ALT_NVU: getALT_NVU(dados.clouds),
-      NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions)
+      NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions),
+      METAR: dados.messageMetarSpeci;
     };
+    
 
     /*if (mensagens.indexOf(dados.id) < 0)
       mensagens.push(line);
