@@ -75,7 +75,7 @@ function consultaOPMET(login, senha) {
   const begindate = $('#dataini').val()
   const enddate = $('#datafin').val()
   const localidade = $('#localidade').val()
-  const url = `https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=${localidade}&begindate=${begindate}&enddate=${begindate}`;
+  const url = `https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=${localidade}&begindate=${begindate}&enddate=${enddate}`;
   const options = {
     //origin: "www.redemet.aer.mil.br",
     headers: {
