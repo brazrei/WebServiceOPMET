@@ -84,7 +84,7 @@ function getAPIKEY(login, senha) {
     },
     method: "POST"
   };
-  let url = "https://opmet.decea.mil.br/adm/login"
+  let url = "https://opmet.decea.intraer/adm/login"
 
   fetch(url, options)
     .then(res => {
@@ -186,10 +186,14 @@ function getNVU_N(clouds, alt) {
 }
 
 function getNVU_1000(clouds) {
+  if (getNVU_600(clouds) || getNVU_800(clouds))
+    return "n"
   return getNVU_N(clouds, 1000) ? "y" : "n";
 }
 
 function getNVU_800(clouds) {
+  if (getNVU_600(clouds))
+    return "n"
   return getNVU_N(clouds, 800) ? "y" : "n";
 }
 
