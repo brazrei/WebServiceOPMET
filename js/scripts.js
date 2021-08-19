@@ -1,4 +1,6 @@
-mensagens = [];
+var mensagens = [];
+var pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
+
 
 Date.prototype.addHours = function (h) {
   this.setHours(this.getHours() + h);
@@ -302,13 +304,24 @@ function decHour(dh, n) {
   return d.addHours(-n);
 }
 
-function getVar1H(dataHoraObs) {
-  let data = decHour(dataHoraObs, 1);
-  data = getFormatedDate(data, false)
-  if (mensagens && mensagens[data]) {
-    console.log(mensagens[data]);
+function getVarNH(dados, h) {
+  let dataHoraObs = dados.observationDateHour;
+  let datanH = decHour(dataHoraObs, h);
+  dataH = getFormatedDate(datanH, false);
+  if (mensagens && mensagens[datanH]) {
+    console.log(mensagens[datanH]);
+    let dadosnH = mensagem[datanH];
+    return dados.temperatures[pista].dryBulbDegreeCelsius - dadosnH.temperatures[pista].dryBulbDegreeCelsius;
   }
+  return "erro"
+}
 
+function getVar1H(dados) {
+  return getVarNH(dados, 1);
+}
+
+function getVar3H(dados) {
+  return getVarNH(dados, 3);
 }
 
 function trataDados(dados) {
@@ -320,14 +333,13 @@ function trataDados(dados) {
       dados = fakeData().bdc[0];
   }
   
-  pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
   let tetos = getTETOS(dados.clouds);
   let line = {
     mes: getMes(dados.observationDateHour),
     hora: getHora(dados.observationDateHour),
     bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
-    bseco_VAR_1H: getVar1H(dados.observationDateHour),
-    bseco_VAR_3H: getVar3H(dados.observationDateHour),
+    bseco_VAR_1H: getVar1H(dados),
+    bseco_VAR_3H: getVar3H(dados),
     bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
     po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
     ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
