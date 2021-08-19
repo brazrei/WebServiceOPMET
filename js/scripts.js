@@ -307,7 +307,7 @@ function decHour(dh, n) {
 function getVarNH(dados, h) {
   let dataHoraObs = dados.observationDateHour;
   let datanH = decHour(dataHoraObs, h);
-  dataH = getFormatedDate(datanH, false);
+  datanH = getFormatedDate(datanH, false);
   if (mensagens && mensagens[datanH]) {
     console.log(mensagens[datanH]);
     let dadosnH = mensagem[datanH];
