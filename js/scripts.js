@@ -35,6 +35,7 @@ function getAPIKEY(login, senha) {
     },
     method: "GET"
   };
+  let url =  "https://opmet.decea.mil.br/adm/login"
 
   fetch(url, options)
     .then(res => res.json())
