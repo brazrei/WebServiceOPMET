@@ -1,5 +1,5 @@
 mensagens = [];
-$.(document).ready(() => {
+$(document).ready(() => {
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
 });
