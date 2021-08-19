@@ -237,7 +237,7 @@ function parseDecimal(n) {
   } catch {
     n = "N invalido"
   }
-  return n / 10;
+  return Math.round((num + Number.EPSILON) * 10) / 10;
 }
 
 function parseRajada(n) {
