@@ -294,7 +294,7 @@ function getTETOS(clouds) {
 
 function decHour(dh, n) {
   let d = new Date(dh);
-  return d.addHour(-n);
+  return d.addHours(-n);
 }
 
 function getVar1H(dataHoraObs) {
