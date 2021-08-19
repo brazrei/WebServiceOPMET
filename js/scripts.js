@@ -1,15 +1,61 @@
 mensagens = [];
 
-Date.prototype.addHours= function(h){
-    this.setHours(this.getHours()+h);
-    return this;
+Date.prototype.addHours = function (h) {
+  this.setHours(this.getHours() + h);
+  return this;
 }
 
 $(document).ready(() => {
-  
+
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
 });
+
+function fakeData() {
+  return {
+    "bdc": [
+
+      {
+        "id": "9158008",
+
+        "station": "82022",
+
+        "observationDateHour": "2021-08-09T16:00",
+
+        "location": "SBBV",
+
+        "registerType": "H",
+
+        "averageTwelveHoursDegreeCelsius": null,
+
+        "visibility": { "prevailingDam": "0800", "minimumDam": null, "direction": null },
+
+        "clouds": [{ "quantity": "3", "type": "ST", "subType": null, "heightDam": "018", "direction": "E" }, { "quantity": "4", "type": "CU", "subType": null, "heightDam": "090", "direction": "E" }, { "quantity": "1", "type": "TCU", "subType": null, "heightDam": "105", "direction": "E" }, { "quantity": "8", "type": "AC", "subType": null, "heightDam": "210", "direction": "E" }],
+
+        "winds": [{ "runway": "26", "directionDeg": "05", "speedKt": "04", "gustKt": null, "variableWind": false, "variableWindDirection": null }, { "runway": "08", "directionDeg": "06", "speedKt": "05", "gustKt": null, "variableWind": false, "variableWindDirection": null }],
+
+        "rvrs": [],
+
+        "temperatures": [{ "runway": "08", "dryBulbDegreeCelsius": "245", "wetBulbDegreeCelsius": "230", "fcqbseco": 2, "fcqbumido": 2, "relativeHumidityPercent": "88", "fcqur": 2, "airDegreeCelsius": null, "fcqtemppista": null, "dewPointDegreeCelcius": "224", "fcqtempo": 2, "origem": "C" }],
+
+        "ceilings": [],
+
+        "weatherConditions": { "presentRecentCondition": [{ "weatherConditionPresentRecentCode": "29", "metarCode": "RETSRA", "indice": 0 }, { "weatherConditionPresentRecentCode": "15", "metarCode": "VCSH", "indice": 1 }], "pastCondition": [] },
+
+        "atmosphericPressure": { "qfeValueHpa": "10059", "qnhValueHpa": "10160", "qffValueHpa": null, "tendency": null, "altitudeOfEightHundredFiftyHpa": null, "diferenceOfLastThreeOrTwentyFourHoursValueHpa": null, "fcqalt850hpa": null, "indicador": "I" },
+
+        "precipitation": {
+          "quantityMilimeters": "0000", "durationTime": "0000", "periodo": 1, "currentDay": { "startTime": null, "endTime": null, "durationTime": null, "quantityMilimeters": null },
+
+          "previousDay": { "startTime": null, "endTime": null, "durationTime": null, "quantityMilimeters": null }
+        },
+
+        "cloudAmount": { "totalCloud": 8, "mediumTotalCloud": null, "lowTotalCloud": null },
+
+        "messageMetarSpeci": "METAR SBBV 091600Z 06005KT 8000 VCSH SCT006 SCT030 FEW035TCU OVC070 25/22 Q1016 RETSRA=", "insertDate": "2021-08-09T15:48"
+      }]
+  }
+}
 
 function addAspas(s) {
   return s
@@ -29,25 +75,25 @@ function getAPIKEY(login, senha) {
     headers: {
       "accept": "*/*"
     },
-    data: { 
-        username : login,
-        password : senha
-        
+    data: {
+      username: login,
+      password: senha
+
     },
     method: "POST"
   };
-  let url =  "https://opmet.decea.mil.br/adm/login"
+  let url = "https://opmet.decea.mil.br/adm/login"
 
   fetch(url, options)
     .then(res => {
-        console.log(res);
-        res.json();
+      console.log(res);
+      res.json();
     })
     .then(data => $('#edtAPIKEY').val(data));
 }
 
-function addZeros(n){
-  return n<10?"0"+n:n;
+function addZeros(n) {
+  return n < 10 ? "0" + n : n;
 }
 
 function getDataIni() {
@@ -61,7 +107,7 @@ function getDataIni() {
 }
 
 function getDataFin() {
-  return getDataIni();  
+  return getDataIni();
 }
 
 function consultaOPMET(login, senha) {
@@ -133,15 +179,15 @@ function getNVU_N(clouds, alt) {
 }
 
 function getNVU_1000(clouds) {
-  return getNVU_N(clouds,1000)?"y":"n";
+  return getNVU_N(clouds, 1000) ? "y" : "n";
 }
 
 function getNVU_800(clouds) {
-  return getNVU_N(clouds,800)?"y":"n";
+  return getNVU_N(clouds, 800) ? "y" : "n";
 }
 
 function getNVU_600(clouds) {
-  return getNVU_N(clouds,600)?"y":"n";
+  return getNVU_N(clouds, 600) ? "y" : "n";
 }
 
 function getNVU_SEM_TETO(clouds, t) {
@@ -155,8 +201,8 @@ function getNVU_SEM_TETO(clouds, t) {
 function getALT_NVU(clouds) {
   maisBaixa = 1500
   clouds.forEach(c => {
-      if (c.heightDam * 10 <= maisBaixa)
-        maisBaixa = c.heightDam * 10
+    if (c.heightDam * 10 <= maisBaixa)
+      maisBaixa = c.heightDam * 10
   })
 
   return maisBaixa
@@ -251,18 +297,24 @@ function decHour(dh, n) {
   return d.addHour(-n);
 }
 
-function getVar1H(dataHoraObs){
-  let data = decHour(dataHoraObs,1);
+function getVar1H(dataHoraObs) {
+  let data = decHour(dataHoraObs, 1);
   data = getFormatedDate(data)
   if (mensagens && mensagens[data]) {
-    
+
   }
-  
+
 }
 
 function trataDados(dados) {
   $('#edtAPIKEY').val(JSON.stringify(dados));
-  dados = dados.bdc[0];
+  
+  try {
+     dados = dados.bdc[0];
+  } catch {
+      dados = fakeData();
+  }
+  
   pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
   let tetos = getTETOS(dados.clouds);
   let line = {
@@ -297,7 +349,7 @@ function trataDados(dados) {
   /*if (mensagens.indexOf(dados.id) < 0)
     mensagens.push(line);
   else*/
-    mensagens[dados.observationDateHour] = line;
+  mensagens[dados.observationDateHour] = line;
 
 }
   /*
