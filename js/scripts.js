@@ -96,14 +96,19 @@ function addZeros(n) {
   return n < 10 ? "0" + n : n;
 }
 
-function getDataIni() {
-  let data = new Date()
+function getFormatedDate(data, zeraMinutos = true) {
   let ano = data.getUTCFullYear();
   let mes = addZeros(parseInt(data.getUTCMonth()) + 1);
   let dia = addZeros(data.getUTCDate());
   let hora = addZeros(data.getUTCHours());
   let minutos = addZeros(data.getUTCMinutes());
-  return `${ano}-${mes}-${dia}T${hora}:00`;
+  if (zeraMinutos)
+    minutos = '00';
+  return `${ano}-${mes}-${dia}T${hora}:${minutos}`;
+}
+
+function getDataIni() {
+  return getFormatedDate(new Date());
 }
 
 function getDataFin() {
@@ -299,9 +304,9 @@ function decHour(dh, n) {
 
 function getVar1H(dataHoraObs) {
   let data = decHour(dataHoraObs, 1);
-  data = getFormatedDate(data)
+  data = getFormatedDate(data, false)
   if (mensagens && mensagens[data]) {
-    console.log(ensagens[data]);
+    console.log(mensagens[data]);
   }
 
 }
