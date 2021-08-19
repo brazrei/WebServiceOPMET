@@ -365,7 +365,7 @@ function trataDados(dt) {
       NVU_600: getNVU_600(dados.clouds),
       ALT_NVU: getALT_NVU(dados.clouds),
       NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions),
-      METAR: dados.messageMetarSpeci;
+      METAR: dados.messageMetarSpeci
     };
     
 
