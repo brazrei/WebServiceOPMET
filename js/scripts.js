@@ -309,24 +309,22 @@ function getVar3H(dados) {
   return getVarNH(dados, 3);
 }
 
-function getIdxPistaWind(dados) {
-  let idx = 0
-  dados.winds.forEach(w => {
+function getPista(dt) {
+  let cont = 0;
+  let idx = -1;
+  dt.forEach(w => {
     if (w.runway == pista)                          
-      return idx
-    idx += 1;
+      idx = cont
+    cont += 1;
   })
-  return "erro"
+  return idx
+}
+function getIdxPistaWind(dados) {
+  return getPista(dados.winds);
 }
 
 function getIdxPistaTemp(dados) {
-  let idx = 0
-  dados.temperatures.forEach(w => {
-    if (w.runway == pista)                          
-      return idx
-    idx += 1;
-  })
-  return "erro"
+  return getPista(dados.temperatures);
 }
 
 function trataDados(dt) {
