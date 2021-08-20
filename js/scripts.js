@@ -1,5 +1,5 @@
 var mensagens = [];
-var pista = 0; //precisa de tratapmento para pegar indice de acordo com o numero da pista
+var pista = "15"; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 
 
 Date.prototype.addHours = function (h) {
@@ -288,8 +288,10 @@ function decHour(dh, n) {
 }
 
 function getVarNH(dados, h) {
+  let pista = getIdxPistaTemp(dados);
   let dataHoraObs = dados.observationDateHour;
   let datanH = decHour(dataHoraObs, h);
+  
   datanH = getFormatedDate(datanH, false);
   if (mensagens && mensagens[datanH]) {
     console.log(mensagens[datanH]);
@@ -307,6 +309,26 @@ function getVar3H(dados) {
   return getVarNH(dados, 3);
 }
 
+function getIdxPistaWind(dados) {
+  let idx = 0
+  dados.winds.forEach(w => {
+    if (w.runway == pista)                          
+      return idx
+    idx += 1;
+  })
+  return "erro"
+}
+
+function getIdxPistaTemp(dados) {
+  let idx = 0
+  dados.temperatures.forEach(w => {
+    if (w.runway == pista)                          
+      return idx
+    idx += 1;
+  })
+  return "erro"
+}
+
 function trataDados(dt) {
   $('#edtAPIKEY').val(JSON.stringify(dt));
 
@@ -317,18 +339,20 @@ function trataDados(dt) {
   }*/
   dt.bdc.forEach((dados) => {
     let tetos = getTETOS(dados.clouds);
+    let idxPistaWind = getIdxPistaWind(dados);
+    let idxPistaTemp = getIdxPistaTemp(dados);
     let line = {
       mes: getMes(dados.observationDateHour),
       hora: getHora(dados.observationDateHour),
-      bseco: parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius),
+      bseco: parseDecimal(dados.temperatures[getIdxPistaTemp].dryBulbDegreeCelsius),
       bseco_VAR_1H: getVar1H(dados),
       bseco_VAR_3H: getVar3H(dados),
-      bumido: parseDecimal(dados.temperatures[pista].wetBulbDegreeCelsius),
-      po: parseDecimal(dados.temperatures[pista].dewPointDegreeCelcius),
-      ur: parseDecimal(dados.temperatures[pista].relativeHumidityPercent),
-      velvento: parseFloat(dados.winds[pista].speedKt),
-      dirvento: parseFloat(dados.winds[pista].directionDeg),
-      rajada: parseRajada(dados.winds[pista].gustKt),
+      bumido: parseDecimal(dados.temperatures[getIdxPistaTemp].wetBulbDegreeCelsius),
+      po: parseDecimal(dados.temperatures[getIdxPistaTemp].dewPointDegreeCelcius),
+      ur: parseDecimal(dados.temperatures[getIdxPistaTemp].relativeHumidityPercent * 10),
+      velvento: parseFloat(dados.winds[getIdxPistaWind].speedKt),
+      dirvento: parseFloat(dados.winds[getIdxPistaWind].directionDeg),
+      rajada: parseRajada(dados.winds[getIdxPistaWind].gustKt),
       qnh: parseDecimal(dados.atmosphericPressure.qnhValueHpa),
       qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
       qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
