@@ -166,10 +166,10 @@ function consultaOPMET(login, senha) {
 }
 
 function getMes(dataHoraObs) {
-  return
+  return parseInt((new Date(dataHoraObs)).getMonth()) + 1;
 }
 function getHora(dataHoraObs) {
-  return
+  return parseInt((new Date(dataHoraObs)).getHour())
 }
 
 /*function getSKC(clouds) {
@@ -237,6 +237,7 @@ function parseDecimal(n) {
   } catch {
     n = "N invalido"
   }
+  n = n/10
   return Math.round((n + Number.EPSILON) * 10) / 10;
 }
 
