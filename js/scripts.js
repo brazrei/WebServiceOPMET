@@ -348,11 +348,17 @@ function getIdxPistaTemp(dados) {
 }
 
 function addLineTable(idTable, line) {
+  function limpaDados(d){
+   d = d.includes('"')?d.split('"')[1]:d
+   d = d.includes('}')?d.split('}')[0]:d
+    return d
+  }
   line = JSON.stringify(line);
   line = line.split(',');
   lineS = ""
   line.forEach(l => {
-     c = l.split(":")[1];
+     c = limpaDados(l.split(":")[1]);
+     
      lineS += `<td>${c}</td>`;
   })
           
