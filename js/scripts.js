@@ -157,7 +157,7 @@ function getHora(dataHoraObs) {
 function getNVU_N(clouds, alt) {
   nvu = false
   clouds.forEach(c => {
-    if (c.heightDam * 10 <= alt)
+    if (damToFt(c.heightDam) <= alt)
       nvu = true
   })
   return nvu
@@ -190,8 +190,8 @@ function getNVU_SEM_TETO(clouds, t) {
 function getALT_NVU(clouds) {
   maisBaixa = 1500
   clouds.forEach(c => {
-    if (c.heightDam * 10 <= maisBaixa)
-      maisBaixa = c.heightDam * 10
+    if (damToFt(c.heightDam) <= maisBaixa)
+      maisBaixa = damToFt(c.heightDam)
   })
 
   return maisBaixa
