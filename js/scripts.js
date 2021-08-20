@@ -117,34 +117,12 @@ function getDataFin() {
   return getDataIni();
 }
 
-function consultaOPMET(login, senha) {
-
-  /* $.post("https://opmet.decea.mil.br/adm/login", { "username": login, "password": senha }, function( data ) {
-     $( ".edtAPIKEY" ).html( data );
-   });  
-   
-   $.ajax({
-   url: "https://opmet.decea.mil.br/adm/login",
-   type: "post",
-   data: { "username": login, "password": senha },
- 
-   success: function(data){ // trigger when request was successfull
-     $( ".edtAPIKEY" ).html( data );
-   },
-   error: (function (erro) {
-     console.log(erro)
-   }) 
- })
-   $.ajax({
-         url: 'https://opmet.decea.mil.br/adm/login',
-         data: {"username":"priscila_bdc","password":"789Cimaer@"},
-         beforeSend: function(xhr) {
-              xhr.setRequestHeader("Content-Type", "application/json")
-         }, success: function(data){
-             alert(data);
-           console.log(data)
-             //process the JSON data etc
-         }*/
+function consultaOPMET(fake = false) {
+  
+  if (fake){
+    traraDados(fakeData());
+    return
+  }
   const begindate = $('#dataini').val()
   const enddate = $('#datafin').val()
   const localidade = $('#localidade').val()
@@ -360,7 +338,7 @@ function trataDados(dt) {
       TETO_1000: tetos.t1000,
       TETO_1500: tetos.t1500,
       SKC: (dados.clouds.length == 0) ? "y" : "n",
-      NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos),
+      NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos), //errado
       NVU_1000: getNVU_1000(dados.clouds),
       NVU_800: getNVU_800(dados.clouds),
       NVU_600: getNVU_600(dados.clouds),
