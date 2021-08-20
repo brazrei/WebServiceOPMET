@@ -330,6 +330,17 @@ function getIdxPistaTemp(dados) {
   return getPista(dados.temperatures);
 }
 
+function addLineTable(idTable, line) {
+  line = line.split(',');
+  lineE = ""
+  line.forEach(l => {
+     c = l.split(":")[1];
+     linhaS += `<td>${c}</td>`;
+  })
+          
+  $(idTable).append(lineS);
+}
+
 function trataDados(dt) {
   $('#edtAPIKEY').val(JSON.stringify(dt));
 
@@ -377,6 +388,7 @@ function trataDados(dt) {
       mensagens.push(line);
     else*/
     mensagens[dados.observationDateHour] = line;
+    addLineTable("#tableData",line);
   });
 
 }
