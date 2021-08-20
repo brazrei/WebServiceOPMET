@@ -331,11 +331,12 @@ function getIdxPistaTemp(dados) {
 }
 
 function addLineTable(idTable, line) {
+  line = JSON.stringify(line);
   line = line.split(',');
-  lineE = ""
+  lineS = ""
   line.forEach(l => {
      c = l.split(":")[1];
-     linhaS += `<td>${c}</td>`;
+     lineS += `<td>${c}</td>`;
   })
           
   $(idTable).append(lineS);
