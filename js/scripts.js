@@ -22,6 +22,7 @@ function getPistaPrincipal(dados) {
     if (pista.localidade == dados.location)
        pista = pista.pistaPrincipal;
   })
+  return pista;
 }
 
 function fakeData() {
