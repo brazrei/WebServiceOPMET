@@ -120,7 +120,7 @@ function getDataFin() {
 function consultaOPMET(fake = false) {
   
   if (fake){
-    traraDados(fakeData());
+    trataDados(fakeData());
     return
   }
   const begindate = $('#dataini').val()
