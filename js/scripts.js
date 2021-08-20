@@ -1,5 +1,6 @@
 var mensagens = [];
-var pista = "15"; //precisa de tratapmento para pegar indice de acordo com o numero da pista
+var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
+var pista = ""
 
 
 Date.prototype.addHours = function (h) {
@@ -12,6 +13,16 @@ $(document).ready(() => {
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
 });
+
+function getPistaPrincipal(dados) { 
+  let pista = dados.winds[0].runway;
+  if (pista.includes("/");
+      pista = pista.split("/")[0]
+  pistas.forEach(pista => {
+    if (pista.localidade == dados.location)
+       pista = pista.pistaPrincipal;
+  })
+}
 
 function fakeData() {
   return {
@@ -326,6 +337,7 @@ function getPista(dt) {
   })
   return idx
 }
+
 function getIdxPistaWind(dados) {
   return getPista(dados.winds);
 }
@@ -355,6 +367,7 @@ function trataDados(dt) {
     dados = fakeData().bdc[0];
   }*/
   dt.bdc.forEach((dados) => {
+    pista = getPistaPrincipal(dados);
     let tetos = getTETOS(dados.clouds);
     let idxPistaWind = getIdxPistaWind(dados);
     let idxPistaTemp = getIdxPistaTemp(dados);
