@@ -169,7 +169,7 @@ function getMes(dataHoraObs) {
   return parseInt((new Date(dataHoraObs)).getMonth()) + 1;
 }
 function getHora(dataHoraObs) {
-  return parseInt((new Date(dataHoraObs)).getHour())
+  return parseInt((new Date(dataHoraObs)).getHours())
 }
 
 /*function getSKC(clouds) {
