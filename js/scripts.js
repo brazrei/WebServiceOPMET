@@ -339,7 +339,7 @@ function addLineTable(idTable, line) {
      lineS += `<td>${c}</td>`;
   })
           
-  $(idTable).append(lineS);
+  $(idTable).append(`<tr>${lineS}</tr>`);
 }
 
 function trataDados(dt) {
