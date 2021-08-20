@@ -182,7 +182,7 @@ function getNVU_600(clouds) {
 function getNVU_SEM_TETO(clouds, t) {
   r = "n"
   if (t.t600 == "n" && t.t800 == "n" && t.t1000 == "n" && t.t1500 == "n")
-    if (clouds.length == 0)
+    if ((clouds.length > 0) && (clouds[0].quantity > 0) && (clouds[0].quantity < 9))
       r = "y"
   return r
 }
