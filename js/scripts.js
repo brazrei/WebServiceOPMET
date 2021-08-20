@@ -210,10 +210,10 @@ function getALT_NVU(clouds) {
 }
 
 function getNVO_OCORRENDO(tempoPresente) {
-  nvo = false;
+  nvo = "n";
   tempoPresente.presentRecentCondition.forEach(e => {
     if (e.weatherConditionPresentRecentCode >= 42 && e.weatherConditionPresentRecentCode <= 49)
-      nvo = true
+      nvo = "y"
 
   });
   return nvo;
