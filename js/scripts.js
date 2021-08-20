@@ -1,5 +1,5 @@
 var mensagens = [];
-var pista = "08"; //precisa de tratapmento para pegar indice de acordo com o numero da pista
+var pista = "15"; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 
 
 Date.prototype.addHours = function (h) {
