@@ -16,7 +16,7 @@ $(document).ready(() => {
 
 function getPistaPrincipal(dados) { 
   let pista = dados.winds[0].runway;
-  if (pista.includes("/");
+  if (pista.includes("/"))
       pista = pista.split("/")[0]
   pistas.forEach(pista => {
     if (pista.localidade == dados.location)
