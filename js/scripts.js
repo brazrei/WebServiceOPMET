@@ -230,11 +230,14 @@ function parseRajada(n) {
   return n
 }
 
+function damToFt(alt) {
+  return Math.round ((alt*100)/3)
+}
 function getTETO_N(clouds, teto) {
   teto = false
   clouds.forEach(c => {
     if (c.quantity > 4 && c.quantity < 9)
-      if (c.heightDam * 10 <= 600)
+      if (damToFt(c.heightDam) <= teto)
         teto = true
   })
   return teto
