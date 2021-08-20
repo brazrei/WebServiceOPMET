@@ -207,6 +207,10 @@ function getNVO_OCORRENDO(tempoPresente) {
   return nvo;
 }
 
+function roundF(n) {
+  return Math.round((n + Number.EPSILON) * 10) / 10;
+}
+
 function parseDecimal(n) {
   if (!n)
     n = 0;
@@ -216,7 +220,7 @@ function parseDecimal(n) {
     n = "N invalido"
   }
   n = n/10
-  return Math.round((n + Number.EPSILON) * 10) / 10;
+  return roundF(n);
 }
 
 function parseRajada(n) {
@@ -299,7 +303,7 @@ function getVarNH(dados, h) {
   if (mensagens && mensagens[datanH]) {
     console.log(mensagens[datanH]);
     let dadosnH = mensagens[datanH];
-    return parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius) - dadosnH.bseco;
+    return roundF(parseDecimal(dados.temperatures[pista].dryBulbDegreeCelsius) - dadosnH.bseco);
   }
   return "erro"
 }
