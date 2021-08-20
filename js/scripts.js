@@ -164,13 +164,13 @@ function getNVU_N(clouds, alt) {
 }
 
 function getNVU_1000(clouds) {
-  if (getNVU_600(clouds) || getNVU_800(clouds))
+  if (getNVU_600(clouds)  == "y" || getNVU_800(clouds)  == "y")
     return "n"
   return getNVU_N(clouds, 1000) ? "y" : "n";
 }
 
 function getNVU_800(clouds) {
-  if (getNVU_600(clouds))
+  if (getNVU_600(clouds) == "y")
     return "n"
   return getNVU_N(clouds, 800) ? "y" : "n";
 }
