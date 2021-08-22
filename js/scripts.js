@@ -365,6 +365,13 @@ function addLineTable(idTable, line) {
   $(idTable).append(`<tr>${lineS}</tr>`);
 }
 
+function updateTable() {
+  $('#tableData tbody').remove();
+  mensagens.forEach(line => {
+    addLineTable("#tableData tbody",line);
+  });
+}
+
 function trataDados(dt) {
   $('#edtAPIKEY').val(JSON.stringify(dt));
 
@@ -413,8 +420,10 @@ function trataDados(dt) {
       mensagens.push(line);
     else*/
     mensagens[dados.observationDateHour] = line;
-    addLineTable("#tableData",line);
+    
   });
+  
+  updateTable();
 
 }
   /*
