@@ -1,4 +1,5 @@
 var mensagens = [];
+var arrIdxMensagens = [];
 var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 var pista = ""
 
@@ -367,8 +368,8 @@ function addLineTable(idTable, line) {
 
 function updateTable() {
   $('#tableData tbody').remove();
-  mensagens.forEach(line => {
-    addLineTable("#tableData tbody",line);
+  arrIdxMensagens.forEach(idx => {
+    addLineTable("#tableData tbody",mensagens[idx]);
   });
 }
 
@@ -419,7 +420,10 @@ function trataDados(dt) {
     /*if (mensagens.indexOf(dados.id) < 0)
       mensagens.push(line);
     else*/
+    
     mensagens[dados.observationDateHour] = line;
+    if (arrIdxMensagens.indexOf(dados.observationDateHour) <0)
+      arrIdxMensagens.push(dados.observationDateHour);
     
   });
   
