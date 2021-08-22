@@ -367,7 +367,7 @@ function addLineTable(idTable, line) {
 }
 
 function updateTable() {
-  $('#tableData tbody').remove();
+  $('#tableData tbody').html('');
   arrIdxMensagens.forEach(idx => {
     addLineTable("#tableData tbody",mensagens[idx]);
   });
