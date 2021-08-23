@@ -387,7 +387,7 @@ function parseData(dados) {
     let tetos = getTETOS(dados.clouds);
     let idxPistaWind = getIdxPistaWind(dados);
     let idxPistaTemp = getIdxPistaTemp(dados);
-    let line = {
+    return {
       mes: getMes(dados.observationDateHour),
       hora: getHora(dados.observationDateHour),
       bseco: parseDecimal(dados.temperatures[idxPistaTemp].dryBulbDegreeCelsius),
