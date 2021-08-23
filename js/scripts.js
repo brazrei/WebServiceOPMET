@@ -131,9 +131,8 @@ function getDataFin() {
 
 function atualizaDados(){
   arrIdxMensagens.forEach(idx => {
-    mensagens[idx] = parseDados(mensagensBrutas[idx])
+    mensagens[idx] = parseData(mensagensBrutas[idx])
   });
-  
 }
 
 function consultaOPMET(fake = false) {
@@ -160,6 +159,8 @@ function consultaOPMET(fake = false) {
     .then(data => {
         trataDados(data.bdc);
         atualizaDados();
+        updateTable();
+
     });
 
 
@@ -431,7 +432,6 @@ function trataDados(dt) {
      }
   });
   
-  updateTable();
 }
   /*
 curl -H 'Content-Type: application/json' -d '{"username":"priscila_bdc","password":"789Cimaer@"}' https://opmet.decea.mil.br/adm/login
