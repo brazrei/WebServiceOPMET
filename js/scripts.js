@@ -377,6 +377,7 @@ function addLineTable(idTable, line) {
 }
 
 function updateTable() {
+  arrIdxMensagens.sort()
   $('#tableData tbody').html('');
   arrIdxMensagens.forEach(idx => {
     addLineTable("#tableData tbody",mensagens[idx]);
