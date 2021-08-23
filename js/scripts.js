@@ -28,9 +28,7 @@ function getPistaPrincipal(dados) {
 }
 
 function fakeData() {
-  return {
-     [
-
+  return  [
       {
         "id": "9158008",
 
@@ -70,7 +68,7 @@ function fakeData() {
 
         "messageMetarSpeci": "METAR SBBV 091600Z 06005KT 8000 VCSH SCT006 SCT030 FEW035TCU OVC070 25/22 Q1016 RETSRA=", "insertDate": "2021-08-09T15:48"
       }]
-  }
+  
 }
 
 function addAspas(s) {
