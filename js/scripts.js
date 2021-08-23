@@ -426,9 +426,9 @@ function trataDados(dt) {
   dt.forEach((dados) => {
      line = parseData(dados);
      mensagens[dados.observationDateHour] = line;
+     mensagensBrutas[dados.observationDateHour] = dados;
     
      if (arrIdxMensagens.indexOf(dados.observationDateHour) <0) {
-       mensagensBrutas[dados.observationDateHour] = dados;
        arrIdxMensagens.push(dados.observationDateHour);
      }
   });
