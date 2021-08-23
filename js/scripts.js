@@ -1,4 +1,5 @@
 var mensagens = [];
+var mensagensBrutas = [];
 var arrIdxMensagens = [];
 var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 var pista = ""
@@ -28,7 +29,7 @@ function getPistaPrincipal(dados) {
 
 function fakeData() {
   return {
-    "bdc": [
+     [
 
       {
         "id": "9158008",
@@ -130,6 +131,13 @@ function getDataFin() {
   return getDataIni();
 }
 
+function atualizaDados(){
+  arrIdxMensagens.forEach(idx => {
+    mensagens[idx] = parseDados(mensagensBrutas[idx])
+  });
+  
+}
+
 function consultaOPMET(fake = false) {
   
   if (fake){
@@ -151,7 +159,10 @@ function consultaOPMET(fake = false) {
 
   fetch(url, options)
     .then(res => res.json())
-    .then(data => trataDados(data));
+    .then(data => {
+        trataDados(data.bdc);
+        atualizaDados();
+    });
 
 
 }
@@ -373,15 +384,7 @@ function updateTable() {
   });
 }
 
-function trataDados(dt) {
-  $('#edtAPIKEY').val(JSON.stringify(dt));
-
-  /*try {
-    dados = dados.bdc[0];
-  } catch {
-    dados = fakeData().bdc[0];
-  }*/
-  dt.bdc.forEach((dados) => {
+function parseData(dados) {
     pista = getPistaPrincipal(dados);
     let tetos = getTETOS(dados.clouds);
     let idxPistaWind = getIdxPistaWind(dados);
@@ -414,21 +417,23 @@ function trataDados(dt) {
       ALT_NVU: getALT_NVU(dados.clouds),
       NVO_OCORRENDO: getNVO_OCORRENDO(dados.weatherConditions),
       METAR: dados.messageMetarSpeci
-    };
-    
+    }
+}
 
-    /*if (mensagens.indexOf(dados.id) < 0)
-      mensagens.push(line);
-    else*/
+function trataDados(dt) {
+  $('#edtAPIKEY').val(JSON.stringify(dt));
+
+  dt.forEach((dados) => {
+     line = parseData(dados);
+     mensagens[dados.observationDateHour] = line;
     
-    mensagens[dados.observationDateHour] = line;
-    if (arrIdxMensagens.indexOf(dados.observationDateHour) <0)
-      arrIdxMensagens.push(dados.observationDateHour);
-    
+     if (arrIdxMensagens.indexOf(dados.observationDateHour) <0) {
+       mensagensBrutas[dados.observationDateHour] = dados;
+       arrIdxMensagens.push(dados.observationDateHour);
+     }
   });
   
   updateTable();
-
 }
   /*
 curl -H 'Content-Type: application/json' -d '{"username":"priscila_bdc","password":"789Cimaer@"}' https://opmet.decea.mil.br/adm/login
