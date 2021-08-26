@@ -3,6 +3,7 @@ var mensagensBrutas = [];
 var arrIdxMensagens = [];
 var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 var pista = ""
+var countdown = 60;
 
 
 Date.prototype.addHours = function (h) {
@@ -10,10 +11,18 @@ Date.prototype.addHours = function (h) {
   return this;
 }
 
+function updateCronometro() {
+  contdown -= 1;
+  if (contdown < 0)
+    countdown = 60
+  $("#cronometro").html(countdown > 10 ? countdown:"0"+countdown)
+}
+
 $(document).ready(() => {
 
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
+  setinterval(updateCronometro,1000)
 });
 
 function getPistaPrincipal(dados) { 
