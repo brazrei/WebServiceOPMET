@@ -22,7 +22,7 @@ $(document).ready(() => {
 
   $('#dataini').val(getDataIni())
   $('#datafin').val(getDataFin())
-  setinterval(updateCronometro,1000)
+  setInterval(updateCronometro,1000)
 });
 
 function getPistaPrincipal(dados) { 
