@@ -14,7 +14,7 @@ Date.prototype.addHours = function (h) {
 function updateCronometro() {
   countdown -= 1;
   if (countdown < 0){
-    countdown = 59
+    countdown = 60
     atualizaConsulta();
   }
   $("#cronometro").html(countdown > 10 ? countdown:"0"+countdown)
