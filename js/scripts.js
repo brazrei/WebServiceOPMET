@@ -15,9 +15,9 @@ function updateCronometro() {
   countdown -= 1;
   if (countdown <= 0){
     countdown = 60
-    atualizaConsulta();
+    //atualizaConsulta();
   }
-  $("#cronometro").html(":" + (countdown > 10 ? countdown:"0"+countdown))
+  $("#cronometro").html(":" + (countdown > 9 ? countdown:"0"+countdown))
 }
 
 $(document).ready(() => {
