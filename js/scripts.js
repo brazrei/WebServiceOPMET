@@ -416,10 +416,10 @@ function parseData(dados) {
       qfe: parseDecimal(dados.atmosphericPressure.qfeValueHpa),
       qff: parseDecimal(dados.atmosphericPressure.qffValueHpa),
       precip: parseDecimal(dados.precipitation.quantityMilimeters),
-      TETO_600: tetos.t600,//tem que ser nesta ordem
-      TETO_800: tetos.t800,
-      TETO_1000: tetos.t1000,
       TETO_1500: tetos.t1500,
+      TETO_1000: tetos.t1000,
+      TETO_800: tetos.t800,
+      TETO_600: tetos.t600,
       SKC: (dados.clouds.length == 0) ? "y" : "n",
       NVU_SEM_TETO: getNVU_SEM_TETO(dados.clouds, tetos), //errado
       NVU_1000: getNVU_1000(dados.clouds),
