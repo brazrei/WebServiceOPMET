@@ -13,7 +13,7 @@ Date.prototype.addHours = function (h) {
 
 function updateCronometro() {
   countdown -= 1;
-  if (countdown < 0){
+  if (countdown <= 0){
     countdown = 60
     atualizaConsulta();
   }
