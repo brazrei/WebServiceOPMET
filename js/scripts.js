@@ -5,27 +5,37 @@ var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmen
 var pista = ""
 var countdown = 60;
 
+$(document).ready(() => {
+  atualizaDatas()
+  setInterval(updateCronometro,1000)
+});
+
+
 
 Date.prototype.addHours = function (h) {
   this.setHours(this.getHours() + h);
   return this;
 }
 
+function atualizaDatas() {
+  $('#dataini').val(getDataIni())
+  $('#datafin').val(getDataFin())
+}
+
+function atualizaConsulta() {
+  atualizaDatas()
+  consultaOPMET();
+}
+
 function updateCronometro() {
   countdown -= 1;
   if (countdown <= 0){
     countdown = 60
-    //atualizaConsulta();
+    atualizaConsulta();
   }
   $("#cronometro").html(":" + (countdown > 9 ? countdown:"0"+countdown))
 }
 
-$(document).ready(() => {
-
-  $('#dataini').val(getDataIni())
-  $('#datafin').val(getDataFin())
-  setInterval(updateCronometro,1000)
-});
 
 function getPistaPrincipal(dados) { 
   let pista = dados.temperatures[0].runway;
@@ -137,7 +147,7 @@ function getDataIni() {
 }
 
 function getDataFin() {
-  return getDataIni();
+  return getFormatedDate(new Date(), false);
 }
 
 function atualizaDados(){
