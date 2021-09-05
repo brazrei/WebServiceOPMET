@@ -3,7 +3,7 @@ var mensagensBrutas = [];
 var arrIdxMensagens = [];
 var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 var pista = ""
-var countdown = 59;
+var countdown = 60;
 
 
 Date.prototype.addHours = function (h) {
