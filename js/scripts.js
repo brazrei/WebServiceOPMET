@@ -3,7 +3,7 @@ var mensagensBrutas = [];
 var arrIdxMensagens = [];
 var pistas = [{localidade: "SBCT", pistaPrincipal:"15"}]; //precisa de tratapmento para pegar indice de acordo com o numero da pista
 var pista = ""
-var countdown = 60;
+var countdown = 59;
 
 $(document).ready(() => {
   atualizaDatas()
@@ -29,8 +29,8 @@ function atualizaConsulta() {
 
 function updateCronometro() {
   countdown -= 1;
-  if (countdown <= 0){
-    countdown = 60
+  if (countdown < 0){
+    countdown = 59
     atualizaConsulta();
   }
   $("#cronometro").html(":" + (countdown > 9 ? countdown:"0"+countdown))
