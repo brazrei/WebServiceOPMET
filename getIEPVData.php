@@ -13,8 +13,8 @@
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
   $headers = array(
-     "accept: */*",
-     "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjMzNDU3NzMyLCJleHAiOjE2MzQzMjE3MzJ9.pfCEuelXAtn79hDUsTLWtP7o7hzUpfbJCBE9siburf8"
+     "'accept': '*/*'",
+     "'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjMzNDU3NzMyLCJleHAiOjE2MzQzMjE3MzJ9.pfCEuelXAtn79hDUsTLWtP7o7hzUpfbJCBE9siburf8'"
   );
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
