@@ -1,6 +1,6 @@
 <?php
 
-  $url = "https://reqbin.com/echo/post/json";
+  $url = "https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123";
 
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -12,7 +12,7 @@
   );
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
-  $data = '{"login":"my_login","password":"my_password"}';
+  $data = '{"login":"priscila_bdc","password":"789Cimaer@"}';
 
   curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
