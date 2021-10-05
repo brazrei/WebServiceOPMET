@@ -187,6 +187,38 @@ function consultaOPMET(fake = false) {
 
 }
 
+function consultaMETAR(fake = false) {
+  
+  if (fake){
+    trataDados(fakeData());
+    return
+  }
+  const begindate = $('#dataini').val()
+  const enddate = $('#datafin').val()
+  const localidade = $('#localidade').val()
+  const url = 'https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123';
+  const options = {
+    //origin: "www.redemet.aer.mil.br",
+    headers: {
+      "accept": "*/*",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmlzY2lsYV9iZGMiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJiZGMtc2VydmljZS5yZWFkIn0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifV0sInByb2ZpbGVSb2xlIjoiU1lTVEVNIiwiaWF0IjoxNjMzNDU3NzMyLCJleHAiOjE2MzQzMjE3MzJ9.pfCEuelXAtn79hDUsTLWtP7o7hzUpfbJCBE9siburf8"
+    },
+    method: "GET"
+  };
+
+  fetch(url, options)
+    .then(res => res.json())
+    .then(data => {
+        trataDados(data.bdc);
+        atualizaDados();
+        updateTable();
+
+    });
+
+
+}
+
+
 function getMes(dataHoraObs) {
   return parseInt((new Date(dataHoraObs)).getMonth()) + 1;
 }
