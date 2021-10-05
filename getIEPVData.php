@@ -9,8 +9,8 @@
 
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
-  curl_setopt($curl, CURLOPT_GET, true);
-  //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  //curl_setopt($curl, CURLOPT_GET, true);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
   $headers = array(
      "accept": "*/*",
