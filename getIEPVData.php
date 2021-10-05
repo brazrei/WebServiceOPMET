@@ -6,7 +6,7 @@
   $enddate = $_GET["enddate"];
   $url = "https://opmet.decea.mil.br/bdc/searchiepv?icaocodes=" . $localidade . "&begindate=" . $begindate . "&enddate=" . $enddate;
 
-
+  echo $url;
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
   //curl_setopt($curl, CURLOPT_GET, true);
