@@ -196,7 +196,7 @@ function consultaMETAR(fake = false) {
   const begindate = $('#dataini').val()
   const enddate = $('#datafin').val()
   const localidade = $('#localidade').val()
-  const url = 'https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123';
+  const url = 'https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123&formato=json';
   const options = {
     //origin: "www.redemet.aer.mil.br",
     headers: {
