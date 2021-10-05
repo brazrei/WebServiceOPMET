@@ -1,6 +1,8 @@
 <?php
 
-  $url = "https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123";
+ // $url = "https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123";
+  $url = "https://opmet.decea.mil.br/adm/login";
+
 
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
