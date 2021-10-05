@@ -10,7 +10,7 @@
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
   $headers = array(
-     "Content-Type: application/json",
+     "Content-Type: application/json"
   );
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
