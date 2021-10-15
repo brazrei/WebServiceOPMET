@@ -11,6 +11,10 @@
     
   function setProxyContext() {
    // Username and Password are required only if your proxy server needs basic authentication
+    $PROXY_USER = $GLOBALS['PROXY_USER'];
+    $PROXY_PASS = $GLOBALS['PROXY_PASS'];
+    $PROXY_HOST = $GLOBALS['PROXY_HOST'];
+    $PROXY_PORT = $GLOBALS['PROXY_PORT'];
     
     $auth = base64_encode("$PROXY_USER:$PROXY_PASS");
     stream_context_set_default(
