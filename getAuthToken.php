@@ -43,11 +43,12 @@ function auth()
    curl_setopt($cl, CURLOPT_PROXY, $proxy);
    curl_setopt($cl, CURLOPT_PROXYUSERPWD, $proxyauth);
     //
-    
    curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($cl, CURLOPT_URL, "$serverURL");
+   curl_setopt($cl, CURLOPT_URL, $serverURL);
    curl_setopt($cl, CURLOPT_POST, true);
-
+   curl_setopt($cl, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json'
+     ));
     /* uncomment this line if you don't have the required SSL certificates */
    // curl_setopt($cl, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($cl, CURLOPT_POSTFIELDS, array(
