@@ -23,7 +23,7 @@ function setProxy() {
     );
   }    
 
-    setProxy();
+    //setProxy();
     /* API URL */
     $url = 'https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101';
         
