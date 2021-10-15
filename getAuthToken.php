@@ -1,3 +1,4 @@
+<?php
 /**
  * Get an authentication token
  */
@@ -26,3 +27,4 @@ function auth()
    curl_close($cl);
    return json_decode($auth_response, true);
 }
+?>
