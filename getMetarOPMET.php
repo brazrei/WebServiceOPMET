@@ -22,16 +22,16 @@ function setProxy() {
 
     setProxy();
     /* API URL */
-    $url = 'https://opmet.decea.mil.br/redemet/consulta_redemet';
+    $url = 'https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101';
         
     /* Init cURL resource */
     $ch = curl_init($url);
         
     /* Array Parameter Data */
-    $data = ['local'=>'sbsp', 'msg'=>'metar', 'data_ini'=>'2021100100', 'data_fim'=>'2021100101'];
+    //$data = ['local'=>'sbsp', 'msg'=>'metar', 'data_ini'=>'2021100100', 'data_fim'=>'2021100101'];
         
     /* pass encoded JSON string to the POST fields */
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         
     /* set the content type json */
     $headers = [];
