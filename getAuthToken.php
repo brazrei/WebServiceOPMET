@@ -64,7 +64,8 @@ function auth()
       return NULL;
    }
    curl_close($cl);
-   return json_decode($auth_response, true);
+   return $auth_response;
+   //return json_decode($auth_response, true);
 }
 //setProxy();
   echo auth();
