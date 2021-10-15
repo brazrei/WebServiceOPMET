@@ -27,5 +27,7 @@
          
     /* close cURL resource */
     curl_close($ch);
+
+    echo $result;
   
 ?>
