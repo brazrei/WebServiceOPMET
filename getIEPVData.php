@@ -1,5 +1,24 @@
 <?php
-
+function setProxy() {
+    $PROXY_HOST = "proxy.decea.intraer"; // Proxy server address
+    $PROXY_PORT = "8080";    // Proxy server port
+    $PROXY_USER = "brazrab";    // Username
+    $PROXY_PASS = "12345678";   // Password
+    // Username and Password are required only if your proxy server needs basic authentication
+    
+    $auth = base64_encode("$PROXY_USER:$PROXY_PASS");
+    stream_context_set_default(
+     array(
+      'http' => array(
+       'proxy' => "tcp://$PROXY_HOST:$PROXY_PORT",
+       'request_fulluri' => true,
+       'header' => "Proxy-Authorization: Basic $auth"
+       // Remove the 'header' option if proxy authentication is not required
+      )
+     )
+    );
+  }    
+  setProxy();
  // $url = "https://opmet.decea.mil.br/redemet//consulta_redemet?local=SBSP&msg=METAR&data_ini=2020120100&data_fim=2020120123";
   $localidade = $_GET["localidade"];
   $begindate = $_GET["begindate"];
