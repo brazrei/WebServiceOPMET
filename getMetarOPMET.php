@@ -39,8 +39,25 @@ function setProxy() {
   }
 
     setProxy();
+/*
+$url = 'http://dynupdate.no-ip.com/ip.php';
+$proxy = '127.0.0.1:8888';
+//$proxyauth = 'user:password';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_PROXY, $proxy);
+//curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 1);
+$curl_scraped_page = curl_exec($ch);
+curl_close($ch);
 
 
+    echo $curl_scraped_page;
+    
+  */
     /* API URL */
     $url = 'https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101';
     $token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDMxNDUwNSwiZXhwIjoxNjM1MTc4NTA1fQ.bgmh6ehNESoxXOvaGjRLbiQfn-89mQvPZyisQNHKU3U";
@@ -63,6 +80,14 @@ function setProxy() {
     $headers = [];
     $headers[] = 'Content-Type:application/json';
     $headers[] = "Authorization: Bearer ".$token;
+
+    //proxy settings
+    $proxy = 'proxy.decea.intraer:8080';
+    $proxyauth = 'brazrab:12345678';
+
+    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         
     /* set return type json */
