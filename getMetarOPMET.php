@@ -10,8 +10,7 @@
   global $token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDMxNDUwNSwiZXhwIjoxNjM1MTc4NTA1fQ.bgmh6ehNESoxXOvaGjRLbiQfn-89mQvPZyisQNHKU3U";
     
   function setProxyContext() {
-    $PROXY_PORT = "8080";    // Proxy server port
-    // Username and Password are required only if your proxy server needs basic authentication
+   // Username and Password are required only if your proxy server needs basic authentication
     
     $auth = base64_encode("$PROXY_USER:$PROXY_PASS");
     stream_context_set_default(
@@ -25,19 +24,6 @@
      )
     );
   }    
-
-  function getMetar($access_token) {
-    $headers = array(
-      'Content-Type: application/json',
-      sprintf('Authorization: Bearer %s', $access_token)
-    );
-
-    $curl = curl_init("https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101");
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $result = json_decode(curl_exec($curl));
-    return $result;
-   }
 
    setProxyContext();
 
