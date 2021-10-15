@@ -44,7 +44,7 @@ function setProxy() {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         
     /* set return type json */
-    //curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
     /* execute request */
     $result = curl_exec($ch);
