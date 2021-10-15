@@ -20,7 +20,7 @@ function setProxy() {
     );
   }    
 
-    setProxy()
+    setProxy();
     /* API URL */
     $url = 'https://opmet.decea.mil.br/redemet/consulta_redemet';
         
