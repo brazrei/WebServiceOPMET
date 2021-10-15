@@ -64,8 +64,8 @@ curl_close($ch);
     
     //echo $token;
     //exit;
-    echo getMetar($token);
-    exit;
+    //echo getMetar($token);
+    //exit;
        
     /* Init cURL resource */
     $ch = curl_init($url);
