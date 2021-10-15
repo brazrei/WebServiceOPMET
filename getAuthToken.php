@@ -52,7 +52,7 @@ function auth()
    // curl_setopt($cl, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($cl, CURLOPT_POSTFIELDS, array(
      "username" => "brazrab_rdmt",
-     "password" => "00rEinaldo"
+     "password" => "**00rEinaldo"
    ));
     
    $auth_response = curl_exec($cl);
@@ -66,7 +66,7 @@ function auth()
    curl_close($cl);
    return json_decode($auth_response, true);
 }
-setProxy();
-
-echo auth();
+//setProxy();
+  echo auth();
+  echo "Done!";
 ?>
