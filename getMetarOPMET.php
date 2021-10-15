@@ -28,7 +28,7 @@ function setProxy() {
     sprintf('Authorization: Bearer %s', $access_token)
   );
 
-  $curl = curl_init("https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101");
+  $curl = curl_init("https://opmet.decea.mil.br/redemet/consulta_redemete?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101");
 
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
