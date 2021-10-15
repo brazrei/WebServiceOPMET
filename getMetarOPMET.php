@@ -3,12 +3,9 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  $PROXY_USER = "brazrab";    // Username
-  $PROXY_PASS = "12345678";   // Password
-  $PROXY_HOST = "proxy.decea.intraer"; // Proxy server address
-  $PROXY_PORT = "8080";
-  $token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDMxNDUwNSwiZXhwIjoxNjM1MTc4NTA1fQ.bgmh6ehNESoxXOvaGjRLbiQfn-89mQvPZyisQNHKU3U";
-    
+  include('proxy.php'); 
+  include('token.php'); 
+   
   function setProxyContext() {
    // Username and Password are required only if your proxy server needs basic authentication
     $PROXY_USER = $GLOBALS['PROXY_USER'];
