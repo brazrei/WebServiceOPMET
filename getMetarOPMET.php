@@ -4,7 +4,7 @@
   error_reporting(E_ALL);
 
   include('proxy.php'); 
-  include('token.php'); 
+  include('token/token.php'); 
    
   function setProxyContext() {
    // Username and Password are required only if your proxy server needs basic authentication
