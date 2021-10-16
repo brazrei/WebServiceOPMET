@@ -45,6 +45,9 @@
    $username = "brazrab_rdmt";
    $password= "**00rEinaldo";
     
+   $headers = [];
+   $headers[] = 'Content-Type:application/json';
+   curl_setopt($cl, CURLOPT_HTTPHEADER, $headers);
    curl_setopt($cl, CURLOPT_FOLLOWLOCATION, true);
 //   curl_setopt($cl, CURLOPT_USERPWD, "$username:$password");
 //   curl_setopt($cl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
