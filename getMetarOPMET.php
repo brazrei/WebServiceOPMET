@@ -30,8 +30,9 @@
 
    /* API URL */
     //$url = 'https://opmet.decea.mil.br/redemet/consulta_redemet?local=SBBH&msg=metar&data_ini=2021100100&data_fim=2021100101';
-    $local = $_GET['local'];
-    if ($local === ""){
+    try {
+      $local = $_GET['local'];
+    } catch(Exception $e) {
       echo "Favor informar ao menos uma localidade para consulta!";
       exit;
     }
