@@ -61,7 +61,7 @@
    /*if(curl_errno($cl)){    
      echo 'Curl error: ' . curl_error($cl);
    }*/
-    
+   echo "{\"username\":\"$username\",\"password\":\"$password\"} - ";
    echo "$output / $status_code";
    exit;
    //
