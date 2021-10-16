@@ -25,7 +25,7 @@ function exportToken2PHP($token) {
     $t = "'$t'";
     fwrite($file, '  $token = ');
     fwrite($file, $t);
-    fwrite($file, "?>");
+    fwrite($file, "\n?>");
     fclose($file);    
     //$cachetime = 65;
   /*
