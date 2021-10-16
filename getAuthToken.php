@@ -53,9 +53,10 @@
    $info = curl_getinfo($cl);
    curl_close($cl);
 
-   if(curl_errno($cl)){    
+   /*if(curl_errno($cl)){    
      echo 'Curl error: ' . curl_error($cl);
-   }
+   }*/
+    
    print_r($output);
    echo $status_code;
    exit;
