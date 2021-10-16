@@ -6,6 +6,7 @@
   include('proxy.php'); 
 
   function extractBearer($token){
+    echo $token;
     $token = json_decode($token);
     return $token->Authorization;
   }
