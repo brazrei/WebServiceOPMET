@@ -36,9 +36,9 @@
       echo "Favor informar ao menos uma localidade para consulta!";
       exit;
     }
-      
+    $msg = $_GET['msg'];
     //$url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=metar";
-    $url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=aviso";
+    $url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=$msg";
     //$url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=taf&data_ini=2021101612&data_fim=2021101618&formato=json";
        
     /* Init cURL resource */
