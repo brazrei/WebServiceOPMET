@@ -22,7 +22,7 @@ function exportToken2PHP($token) {
     $file = fopen($tokenFileName, 'w');
     fwrite($file, "<?php");
     $t = extractBearer($token));
-    fwrite($file, '  $token = ' . "'$t'";
+    fwrite($file, '  $token = ' . "'$t'");
     fwrite($file, "?>");
     fclose($file);    
     //$cachetime = 65;
