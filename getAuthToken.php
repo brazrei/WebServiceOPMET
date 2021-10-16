@@ -50,7 +50,7 @@
 //   curl_setopt($cl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
    curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
    curl_setopt($cl, CURLOPT_POST, true);   
-   curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"username\":\"$username\",\"password\":\"$password\"}");
+   curl_setopt($cl, CURLOPT_POSTFIELDS, "{\"username\":\"$username\",\"password\":\"$password\"}");
     
    $output = curl_exec($cl);
     
