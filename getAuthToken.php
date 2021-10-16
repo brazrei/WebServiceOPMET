@@ -8,7 +8,7 @@
 /**
  * Get an authentication token
  */
-function setProxy() {
+  function setProxy() {
     $PROXY_HOST = "proxy.decea.intraer"; // Proxy server address
     $PROXY_PORT = "8080";    // Proxy server port
     $PROXY_USER = "brazrab";    // Username
@@ -28,27 +28,28 @@ function setProxy() {
     );
   }    
 
-function auth()
-{
+  function auth() {
    $serverURL = "https://opmet.decea.mil.br/adm/login";
-   $cl = curl_init();
+   $cl = curl_init($serverURL);
 
     //proxy settings
    $PROXY_USER = $GLOBALS['PROXY_USER'];
    $PROXY_PASS = $GLOBALS['PROXY_PASS'];
    $PROXY_HOST = $GLOBALS['PROXY_HOST'];
    $PROXY_PORT = $GLOBALS['PROXY_PORT'];
-   $proxy = $PROXY_HOST  . ':' . $PROXY_PORT;
-   $proxyauth = $PROXY_USER . ":" . $PROXY_PASS;
+   $proxy = "$PROXY_HOST:$PROXY_PORT";
+   $proxyauth = "$PROXY_USER:$PROXY_PASS";
    curl_setopt($cl, CURLOPT_PROXY, $proxy);
    curl_setopt($cl, CURLOPT_PROXYUSERPWD, $proxyauth);
-    //
+   //
+
    curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($cl, CURLOPT_URL, $serverURL);
    curl_setopt($cl, CURLOPT_POST, true);
-   curl_setopt($cl, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json'
-     ));
+    
+    $headers = [];
+    $headers[] = 'Content-Type:application/json';
+    curl_setopt($cl, CURLOPT_HTTPHEADER, $headers);
+    
     /* uncomment this line if you don't have the required SSL certificates */
    // curl_setopt($cl, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($cl, CURLOPT_POSTFIELDS, array(
@@ -67,8 +68,8 @@ function auth()
    curl_close($cl);
    return $auth_response;
    //return json_decode($auth_response, true);
-}
-//setProxy();
+  }
+  //setProxy();
   echo auth();
   echo "Done!";
 ?>
