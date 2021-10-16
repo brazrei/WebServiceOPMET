@@ -19,7 +19,9 @@ function exportToken2PHP($token) {
     $tokenFileName = $dirName . "/" . 'token.php';
     
     $file = fopen($tokenFileName, 'w');
-    fwrite($file, $token);
+    fwrite($file, "<?php");
+    fwrite($file, "  $token = " . extractBearer($token));
+    fwrite($file, "?>");
     fclose($file);    
     //$cachetime = 65;
   /*
