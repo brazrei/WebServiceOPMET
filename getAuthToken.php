@@ -5,12 +5,13 @@
 
   include('proxy.php'); 
 
-  function exportToken2PHP($token) {
+  function extractBearer($token){
+    $token = json_decode($token);
+    return $token['authorization'];
+  }
+
+function exportToken2PHP($token) {
     
-    function extractBearer($token){
-      $token = json_decode($token);
-      return $token['authorization'];
-    }
     $dirName = "token";
     if (!file_exists($dirName)) {
        mkdir($dirName, 0777);
@@ -66,7 +67,7 @@
    $info = curl_getinfo($cl);
    curl_close($cl);
 
-   return $output;if ()
+   return $output;
    exportTokenPHP($output);
     
    if ($output === false)
