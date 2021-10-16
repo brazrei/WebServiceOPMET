@@ -37,9 +37,9 @@
       exit;
     }
     $msg = $_GET['msg'];
-    //$url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=metar";
-    $url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=$msg&data_ini=2021101610&data_fim=2021101620";
-  echo $url;
+    $url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=$msg";
+    //$url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=$msg&data_ini=2021101610&data_fim=2021101620";
+    //echo $url;
     //$url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=taf&data_ini=2021101612&data_fim=2021101618&formato=json";
        
     /* Init cURL resource */
@@ -48,7 +48,7 @@
     /* set the content type json */
     $headers = [];
     $headers[] = 'Content-Type:application/json';
-    $headers[] = "Authorization: ".$token;
+    $headers[] = "Authorization: " . $token;
 
     //proxy settings
     $proxy = "$PROXY_HOST:$PROXY_PORT";
