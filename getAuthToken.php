@@ -5,29 +5,34 @@
 
   include('proxy.php'); 
 
-/**
- * Get an authentication token
- */
-  function setProxy() {
-    $PROXY_HOST = "proxy.decea.intraer"; // Proxy server address
-    $PROXY_PORT = "8080";    // Proxy server port
-    $PROXY_USER = "brazrab";    // Username
-    $PROXY_PASS = "12345678";   // Password
-    // Username and Password are required only if your proxy server needs basic authentication
+  function exportToken2PHP($token) {
     
-    $auth = base64_encode("$PROXY_USER:$PROXY_PASS");
-    stream_context_set_default(
-     array(
-      'http' => array(
-       'proxy' => "tcp://$PROXY_HOST:$PROXY_PORT",
-       'request_fulluri' => true,
-       'header' => "Proxy-Authorization: Basic $auth"
-       // Remove the 'header' option if proxy authentication is not required
-      )
-     )
-    );
-  }    
-
+    function extractBearer($token){
+      $token = json_decode($token);
+      return $token['authorization'];
+    }
+    $dirName = "token";
+    if (!file_exists($dirName)) {
+       mkdir($dirName, 0777);
+    }
+    $tokenFileName = $dirName . "/" . 'token.php';
+    
+    $file = fopen($tokenFileName, 'w');
+    fwrite($file, $token);
+    fclose($file);    
+    //$cachetime = 65;
+  /*
+    // Serve from the cache if it is younger than $cachetime
+    if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
+        echo "<!-- Cached copy, generated ".date('H:i', filemtime($cachefile))." -->\n";
+        readfile($cachefile);
+        exit;
+    }
+    */
+  }
+  /**
+  * Get an authentication token
+  */
   function auth() {
    $serverURL = "https://opmet.decea.mil.br/adm/login";
    $cl = curl_init($serverURL);
@@ -61,41 +66,21 @@
    $info = curl_getinfo($cl);
    curl_close($cl);
 
-   /*if(curl_errno($cl)){    
-     echo 'Curl error: ' . curl_error($cl);
-   }*/
-   echo "{\"username\":\"$username\",\"password\":\"$password\"} - ";
-   echo "$output / $status_code";
-   exit;
-   //
+   return $output;if ()
+   exportTokenPHP($output);
     
-   curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($cl, CURLOPT_POST, true);
-    
-   $headers = [];
-   $headers[] = 'Content-Type:application/json';
-   curl_setopt($cl, CURLOPT_HTTPHEADER, $headers);
-    
-   /* uncomment this line if you don't have the required SSL certificates */
-   // curl_setopt($cl, CURLOPT_SSL_VERIFYPEER, false);
-   curl_setopt($cl, CURLOPT_POSTFIELDS, array(
-     "username" => "brazrab_rdmt",
-     "password" => "**00rEinaldo"
-   ));
-    
-   $auth_response = curl_exec($cl);
-   if ($auth_response === false)
+   if ($output === false)
    {
       echo "Failed to authenticate\n";
       var_dump(curl_getinfo($cl));
-      curl_close($cl);
       return NULL;
    }
-   curl_close($cl);
-   return $auth_response;
-   //return json_decode($auth_response, true);
   }
+
   //setProxy();
-  echo auth();
+  //$response =  auth();
+  $response = '{"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDM4NTAwMiwiZXhwIjoxNjM1MjQ5MDAyfQ.A4VIIWFFjVVi0eeraGT_vdIgZlLLwpcj1KTPywyszSs"}';
+  
+  exportToken2PHP($response);
   echo "Done!";
 ?>
