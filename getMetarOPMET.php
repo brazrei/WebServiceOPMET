@@ -37,7 +37,7 @@
       exit;
     }
       
-    $url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=metar";
+    $url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=metar";
        
     /* Init cURL resource */
     $ch = curl_init($url);
