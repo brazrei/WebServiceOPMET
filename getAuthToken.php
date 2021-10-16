@@ -21,7 +21,7 @@ function exportToken2PHP($token) {
     
     $file = fopen($tokenFileName, 'w');
     fwrite($file, "<?php\n");
-    $t = extractBearer($token));
+    $t = extractBearer($token);
     $t = "'$t'";
     fwrite($file, '  $token = ');
     fwrite($file, $t);
