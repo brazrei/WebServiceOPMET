@@ -46,9 +46,14 @@
    $password= "**00rEinaldo";
     
    curl_setopt($cl, CURLOPT_FOLLOWLOCATION, true);
-   curl_setopt($cl, CURLOPT_USERPWD, "$username:$password");
-   curl_setopt($cl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+//   curl_setopt($cl, CURLOPT_USERPWD, "$username:$password");
+//   curl_setopt($cl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+   curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
+   curl_setopt($cl, CURLOPT_POST, true);   
+   curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"username\":\"$username\",\"password\":\"$password\"}");
+    
    $output = curl_exec($cl);
+    
    $status_code = curl_getinfo($cl, CURLINFO_HTTP_CODE);   //get status code
    $info = curl_getinfo($cl);
    curl_close($cl);
