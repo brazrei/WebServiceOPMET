@@ -45,7 +45,7 @@
     /* set the content type json */
     $headers = [];
     $headers[] = 'Content-Type:application/json';
-    $headers[] = "Authorization: Bearer ".$token;
+    $headers[] = "Authorization: ".$token;
 
     //proxy settings
     $proxy = "$PROXY_HOST:$PROXY_PORT";
