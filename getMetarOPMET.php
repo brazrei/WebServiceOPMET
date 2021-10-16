@@ -5,7 +5,22 @@
 
   include('proxy.php'); 
   include('token/token.php'); 
-   
+
+  function sortMetar($locs, $text) {
+    $arrLocs = explode (",", $locs);
+    $arrMetares = explode("=", $text);
+    $resultado = ""; 
+    foreach ($arrLocs as $loc) {
+        foreach ($arrMetares as $metar) {
+            if (strpos($metar, $loc))
+              $resultado = "$resultado$metar=";
+        }
+      
+    }    
+    return $resultado;
+    
+  }
+  
   function setProxyContext() {
    // Username and Password are required only if your proxy server needs basic authentication
     $PROXY_USER = $GLOBALS['PROXY_USER'];
@@ -67,7 +82,10 @@
          
     /* close cURL resource */
     curl_close($ch);
-
-    echo $result;
+    
+    if  ($msg == "metar"){
+      echo sortMetar($result);
+    } else
+      echo $result;
   
 ?>
