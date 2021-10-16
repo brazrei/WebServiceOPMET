@@ -85,8 +85,8 @@ function exportToken2PHP($token) {
   }
 
   //setProxy();
-  //$response =  auth();
-  $response = '{"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDM4NTAwMiwiZXhwIjoxNjM1MjQ5MDAyfQ.A4VIIWFFjVVi0eeraGT_vdIgZlLLwpcj1KTPywyszSs"}';
+  $response =  auth();
+  //$response = '{"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDM4NTAwMiwiZXhwIjoxNjM1MjQ5MDAyfQ.A4VIIWFFjVVi0eeraGT_vdIgZlLLwpcj1KTPywyszSs"}';
   
   exportToken2PHP($response);
   echo "Done!";
