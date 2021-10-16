@@ -8,7 +8,7 @@
   function extractBearer($token){
     echo $token;
     $token = json_decode($token);
-    return $token->Authorization;
+    return $token->authorization;
   }
 
 function exportToken2PHP($token) {
