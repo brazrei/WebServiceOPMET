@@ -42,15 +42,33 @@
    curl_setopt($cl, CURLOPT_PROXY, $proxy);
    curl_setopt($cl, CURLOPT_PROXYUSERPWD, $proxyauth);
    //
+   $username = "brazrab_rdmt";
+   $password= "**00rEinaldo";
+    
+   curl_setopt($cl, CURLOPT_FOLLOWLOCATION, true);
+   curl_setopt($cl, CURLOPT_USERPWD, "$username:$password");
+   curl_setopt($cl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+   $output = curl_exec($cl);
+   $status_code = curl_getinfo($cl, CURLINFO_HTTP_CODE);   //get status code
+   $info = curl_getinfo($cl);
+   curl_close($cl);
 
+   if(curl_errno($cl)){    
+     echo 'Curl error: ' . curl_error($cl);
+   }
+   print_r($output);
+   echo $status_code;
+   exit;
+   //
+    
    curl_setopt($cl, CURLOPT_RETURNTRANSFER, true);
    curl_setopt($cl, CURLOPT_POST, true);
     
-    $headers = [];
-    $headers[] = 'Content-Type:application/json';
-    curl_setopt($cl, CURLOPT_HTTPHEADER, $headers);
+   $headers = [];
+   $headers[] = 'Content-Type:application/json';
+   curl_setopt($cl, CURLOPT_HTTPHEADER, $headers);
     
-    /* uncomment this line if you don't have the required SSL certificates */
+   /* uncomment this line if you don't have the required SSL certificates */
    // curl_setopt($cl, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($cl, CURLOPT_POSTFIELDS, array(
      "username" => "brazrab_rdmt",
