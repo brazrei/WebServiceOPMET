@@ -84,7 +84,7 @@
     curl_close($ch);
     
     if  ($msg == "metar"){
-      echo sortMetar($result);
+      echo sortMetar($localidades,$result);
     } else
       echo $result;
   
