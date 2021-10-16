@@ -48,8 +48,8 @@
     $headers[] = "Authorization: Bearer ".$token;
 
     //proxy settings
-    $proxy = $PROXY_HOST  . ':' . $PROXY_PORT;
-    $proxyauth = $PROXY_USER . ":" . $PROXY_PASS;
+    $proxy = "$PROXY_HOST:$PROXY_PORT";
+    $proxyauth = "$PROXY_USER:$PROXY_PASS";
 
     curl_setopt($ch, CURLOPT_PROXY, $proxy);
     curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
