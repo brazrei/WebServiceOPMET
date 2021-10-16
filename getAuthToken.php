@@ -57,8 +57,7 @@
      echo 'Curl error: ' . curl_error($cl);
    }*/
     
-   echo $output;
-   echo $status_code;
+   echo "$output / $status_code";
    exit;
    //
     
