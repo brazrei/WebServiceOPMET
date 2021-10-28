@@ -3,7 +3,7 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  include('proxy.php'); 
+  //include('proxy.php'); 
   include('token/token.php'); 
 
   function sortMetar($locs, $text) {
@@ -22,17 +22,24 @@
   }
   
   function setProxyContext() {
+    if (!isset($GLOBALS['PROXY_USER']))
+   	return;
    // Username and Password are required only if your proxy server needs basic authentication
-    $PROXY_USER = $GLOBALS['PROXY_USER'];
-    $PROXY_PASS = $GLOBALS['PROXY_PASS'];
-    $PROXY_HOST = $GLOBALS['PROXY_HOST'];
-    $PROXY_PORT = $GLOBALS['PROXY_PORT'];
+    if (isset($GLOBALS['PROXY_USER']))
+      $PROXY_USER = $GLOBALS['PROXY_USER'];
+    if (isset($GLOBALS['PROXY_PASS']))
+      $PROXY_PASS = $GLOBALS['PROXY_PASS'];
+    if (isset($GLOBALS['PROXY_HOST']))
+      $PROXY_HOST = $GLOBALS['PROXY_HOST'];
+    if (isset($GLOBALS['PROXY_PORT']))
+      $PROXY_PORT = $GLOBALS['PROXY_PORT'];
     
     $auth = base64_encode("$PROXY_USER:$PROXY_PASS");
+    $proxyBearer = "tcp://$PROXY_HOST:$PROXY_PORT"; 
     stream_context_set_default(
      array(
       'http' => array(
-       'proxy' => "tcp://$PROXY_HOST:$PROXY_PORT",
+       'proxy' => $proxyBearer,
        'request_fulluri' => true,
        'header' => "Proxy-Authorization: Basic $auth"
        // Remove the 'header' option if proxy authentication is not required
@@ -56,8 +63,12 @@
     //$url = "https://opmet.decea.mil.br/redemet/consulta_redemet?local=$localidades&msg=$msg&data_ini=2021101610&data_fim=2021101620";
     //echo $url;
     //$url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=taf&data_ini=2021101612&data_fim=2021101618&formato=json";
-       
+    if (isset($_GET['data_ini']))
+      $url = "$url&data_ini=" . $_GET['data_ini'];  
+    if (isset($_GET['data_fim']))
+      $url = "$url&data_fim=" . $_GET['data_fim'];  
     /* Init cURL resource */
+    //echo $url."---";
     $ch = curl_init($url);
 
     /* set the content type json */
@@ -66,11 +77,12 @@
     $headers[] = "Authorization: " . $token;
 
     //proxy settings
-    $proxy = "$PROXY_HOST:$PROXY_PORT";
-    $proxyauth = "$PROXY_USER:$PROXY_PASS";
-
-    curl_setopt($ch, CURLOPT_PROXY, $proxy);
-    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+    if (isset($GLOBALS['PROXY_USER'])){
+      $proxy = "$PROXY_HOST:$PROXY_PORT";
+      $proxyauth = "$PROXY_USER:$PROXY_PASS";
+      curl_setopt($ch, CURLOPT_PROXY, $proxy);
+      curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+    }
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         
@@ -89,3 +101,6 @@
       echo $result;
   
 ?>
+
+
+

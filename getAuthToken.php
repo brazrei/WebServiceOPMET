@@ -3,7 +3,7 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  include('proxy.php'); 
+  //include('proxy.php'); 
 
   function extractBearer($token){
     echo $token;
@@ -15,7 +15,8 @@ function exportToken2PHP($token) {
     
     $dirName = "token";
     if (!file_exists($dirName)) {
-       mkdir($dirName, 0777);
+       if(!@mkdir($dirName))
+	  echo "Erro ao tentar criar a pasta $dirName";
     }
     $tokenFileName = $dirName . "/" . 'token.php';
     
