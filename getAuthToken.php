@@ -80,7 +80,7 @@
     $fileName = "token".DIRECTORY_SEPARATOR."token.php";
     if (file_exists($fileName)) {
         if (time() - filectime($fileName) >= $idade * 60) { 
-          unlink($fileName);
+          //unlink($fileName); //vai sobescrever apenas depois de obter o token
           return true;
         }
     }
