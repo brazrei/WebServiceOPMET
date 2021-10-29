@@ -4,7 +4,7 @@
   error_reporting(E_ALL);
 
   //inutil, por enquanto, o argumento proxy esta sendo removido da url antes de chegar aqui
-  if (isset($_GET['proxy']) && $_GET['proxy'] == "true")
+  if (isset($_GET['proxy']) && ($_GET['proxy'] == "true"))
     include('proxy.php'); 
 
   function extractBearer($token){
@@ -13,7 +13,7 @@
     return $token->authorization;
   }
 
-function exportToken2PHP($token) {
+  function exportToken2PHP($token) {
     
     $dirName = "token";
     if (!file_exists($dirName)) {
@@ -30,16 +30,8 @@ function exportToken2PHP($token) {
     fwrite($file, $t);
     fwrite($file, "\n?>");
     fclose($file);    
-    //$cachetime = 65;
-  /*
-    // Serve from the cache if it is younger than $cachetime
-    if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
-        echo "<!-- Cached copy, generated ".date('H:i', filemtime($cachefile))." -->\n";
-        readfile($cachefile);
-        exit;
-    }
-    */
   }
+
   /**
   * Get an authentication token
   */
@@ -82,7 +74,7 @@ function exportToken2PHP($token) {
   function deleteOldTokenFile($idade = 5) { //idade em minutos
     $fileName = "token".DIRECTORY_SEPARATOR."token.php";
     if (file_exists($fileName)) {
-        if (time() - filectime($fileName) >= $idade * 60) {
+        if (time() - filectime($fileName) >= $idade * 60) 
           unlink($fileName);
     }
   }
