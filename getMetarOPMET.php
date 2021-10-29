@@ -3,7 +3,13 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  //include('proxy.php'); 
+  //inutil, por enquanto, o argumento proxy esta sendo removido da url antes de chegar aqui
+  if (isset($_GET['proxy']) && $_GET['proxy'] == "true")
+    include('proxy.php'); 
+
+  function atualizaToken() {
+  }
+
   include('token/token.php'); 
 
   function sortMetar($locs, $text) {
