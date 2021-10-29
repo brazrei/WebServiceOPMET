@@ -43,7 +43,7 @@ function exportToken2PHP($token) {
   /**
   * Get an authentication token
   */
-  function auth() {
+  function getAuth() {
    $serverURL = "https://opmet.decea.mil.br/adm/login";
    $cl = curl_init($serverURL);
 
@@ -77,16 +77,8 @@ function exportToken2PHP($token) {
    curl_close($cl);
 
    return $output;
-   exportTokenPHP($output);
-    
-   if ($output === false)
-   {
-      echo "Failed to authenticate\n";
-      var_dump(curl_getinfo($cl));
-      return NULL;
-   }
   }
-  
+
   function deleteOldTokenFile($idade = 5) { //idade em minutos
     $fileName = "token".DIRECTORY_SEPARATOR."token.php";
     if (file_exists($fileName)) {
@@ -94,12 +86,8 @@ function exportToken2PHP($token) {
           unlink($fileName);
     }
   }
-    
-  //setProxy();
-  $response =  auth();
-  //$response = '{"authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF6cmFiX3JkbXQiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJhdWRpdC5jIn0seyJhdXRob3JpdHkiOiJhdWRpdC5kIn0seyJhdXRob3JpdHkiOiJhdWRpdC5yIn0seyJhdXRob3JpdHkiOiJhdWRpdC51In0seyJhdXRob3JpdHkiOiJjaGFuZ2UucGFzc3dvcmQifSx7ImF1dGhvcml0eSI6InJlZGVtZXQtc2VydmljZS5yZWFkIn1dLCJwcm9maWxlUm9sZSI6IlNZU1RFTSIsImlhdCI6MTYzNDM4NTAwMiwiZXhwIjoxNjM1MjQ5MDAyfQ.A4VIIWFFjVVi0eeraGT_vdIgZlLLwpcj1KTPywyszSs"}';
-  
+      
   deleteOldTokenFile(5); //tempo em minutos
-  exportToken2PHP($response);
+  exportToken2PHP(getAuth());
   echo "Done!";
 ?>
