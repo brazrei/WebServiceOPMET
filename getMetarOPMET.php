@@ -68,7 +68,7 @@
     if (isset($_GET['data_fim']))
       $url = "$url&data_fim=" . $_GET['data_fim'];  
     /* Init cURL resource */
-    //echo $url."---";
+//    echo $url."---";
     $ch = curl_init($url);
 
     /* set the content type json */
