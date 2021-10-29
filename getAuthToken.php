@@ -18,7 +18,7 @@
   }
 
   function exportToken2PHP($token) {
-    if (!strpos(uppercase($token),"AUTHORIZATION"))
+    if (!strpos(strtoupper($token),"AUTHORIZATION"))
         return false;
     
     $dirName = "token";
