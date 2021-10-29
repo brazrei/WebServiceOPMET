@@ -82,7 +82,7 @@
     return false;
   }
       
-  if (deleteOldTokenFile(5) || (isset($_GET['update']) && ($_GET['update'] == "true")) //tempo em minutos
+  if (deleteOldTokenFile(5) || (isset($_GET['update']) && ($_GET['update'] == "true"))) //tempo em minutos
     exportToken2PHP(getAuth());
   echo "Done!";
 ?>
