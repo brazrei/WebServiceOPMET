@@ -4,7 +4,11 @@
  // error_reporting(E_ALL);
 
   //inutil, por enquanto, o argumento proxy esta sendo removido da url antes de chegar aqui
-  if (isset($_GET['proxy']) && ($_GET['proxy'] == "true"))
+  function viaProxy() {
+    return (isset($_GET['proxy']) && ($_GET['proxy'] == "true"));
+  }
+
+  if (viaProxy())
     include('proxy.php'); 
 
   function extractBearer($token){
@@ -40,15 +44,16 @@
    $cl = curl_init($serverURL);
 
     //proxy settings
-   $PROXY_USER = $GLOBALS['PROXY_USER'];
-   $PROXY_PASS = $GLOBALS['PROXY_PASS'];
-   $PROXY_HOST = $GLOBALS['PROXY_HOST'];
-   $PROXY_PORT = $GLOBALS['PROXY_PORT'];
-   $proxy = "$PROXY_HOST:$PROXY_PORT";
-   $proxyauth = "$PROXY_USER:$PROXY_PASS";
-   curl_setopt($cl, CURLOPT_PROXY, $proxy);
-   curl_setopt($cl, CURLOPT_PROXYUSERPWD, $proxyauth);
-   //
+   if (viaProxy()) { 
+     $PROXY_USER = $GLOBALS['PROXY_USER'];
+     $PROXY_PASS = $GLOBALS['PROXY_PASS'];
+     $PROXY_HOST = $GLOBALS['PROXY_HOST'];
+     $PROXY_PORT = $GLOBALS['PROXY_PORT'];
+     $proxy = "$PROXY_HOST:$PROXY_PORT";
+     $proxyauth = "$PROXY_USER:$PROXY_PASS";
+     curl_setopt($cl, CURLOPT_PROXY, $proxy);
+     curl_setopt($cl, CURLOPT_PROXYUSERPWD, $proxyauth);
+   }//
    $username = "brazrab_rdmt";
    $password= "**00rEinaldo";
     
