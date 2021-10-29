@@ -74,12 +74,15 @@
   function deleteOldTokenFile($idade = 5) { //idade em minutos
     $fileName = "token".DIRECTORY_SEPARATOR."token.php";
     if (file_exists($fileName)) {
-        if (time() - filectime($fileName) >= $idade * 60) 
+        if (time() - filectime($fileName) >= $idade * 60) { 
           unlink($fileName);
+          return true;
+        }
     }
+    return false;
   }
       
-  deleteOldTokenFile(5); //tempo em minutos
-  exportToken2PHP(getAuth());
+  if (deleteOldTokenFile(5)) //tempo em minutos
+    exportToken2PHP(getAuth());
   echo "Done!";
 ?>
