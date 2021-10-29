@@ -81,8 +81,11 @@
     }
     return false;
   }
-      
-  if (deleteOldTokenFile(5) || (isset($_GET['update']) && ($_GET['update'] == "true"))) //tempo em minutos
+  
+  $tokenTimeout = 5;
+  if (isset($_GET['timeout'])) //timeout em minutos
+    $tokenTimeout = $_GET['timeout'];
+  if (deleteOldTokenFile($tokenTimeout) || (isset($_GET['update']) && ($_GET['update'] == "true"))) //tempo em minutos
     exportToken2PHP(getAuth());
   echo "Done!";
 ?>
