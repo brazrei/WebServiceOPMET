@@ -7,8 +7,7 @@
   if (isset($_GET['proxy']) && $_GET['proxy'] == "true")
     include('proxy.php'); 
 
-  function atualizaToken() {
-  }
+  include('getAuthToken.php'); 
 
   include('token/token.php'); 
 
