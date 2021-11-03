@@ -1,7 +1,7 @@
 <?php
- // ini_set('display_errors', 1);
- // ini_set('display_startup_errors', 1);
- // error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
 
   //inutil, por enquanto, o argumento proxy esta sendo removido da url antes de chegar aqui
   function viaProxy() {
@@ -12,7 +12,7 @@
     include('proxy.php'); 
 
   function extractBearer($token){
-    //echo $token;
+//    echo $token;
     $token = json_decode($token);
     return $token->authorization;
   }
@@ -85,8 +85,10 @@
           //unlink($fileName); //vai sobescrever apenas depois de obter o token
           return true;
         }
+        else
+         return false;
     }
-    return false;
+    return true;
   }
   
   $tokenTimeout = 5;
