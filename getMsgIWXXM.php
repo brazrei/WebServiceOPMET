@@ -69,12 +69,13 @@
     //echo $url;
 //    $url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=taf&data_ini=2021101612&data_fim=2021101618&formato=json";
     $url = "https://opmet.decea.mil.br/redemet/consulta_iwxxm?local=$localidades&msg=taf&formato=json";
-    /*if (isset($_GET['data_ini']))
+    if (isset($_GET['data_ini']))
       $url = "$url&data_ini=" . $_GET['data_ini'];  
     if (isset($_GET['data_fim']))
       $url = "$url&data_fim=" . $_GET['data_fim'];  
     /* Init cURL resource */
 //    echo $url."---";
+    //echo $url;
     $ch = curl_init($url);
 
     /* set the content type json */
