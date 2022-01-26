@@ -72,6 +72,8 @@
       $url = "$url&data_ini=" . $_GET['data_ini'];  
     if (isset($_GET['data_fim']))
       $url = "$url&data_fim=" . $_GET['data_fim'];  
+    if (isset($_GET['cabecalho']))
+      $url = "$url&cabecalho=" . $_GET['cabecalho'];  
     /* Init cURL resource */
 //    echo $url."---";
     $ch = curl_init($url);
